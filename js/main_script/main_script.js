@@ -78,35 +78,50 @@ document.addEventListener('DOMContentLoaded', function () {
 /***/ (function() {
 
 document.addEventListener('DOMContentLoaded', function () {
-  var preloader = document.querySelector('.jsPreloader');
-  var preloaderPercentage = document.querySelector('.jsPreloaderPercentage');
-  var imagesCount = document.querySelectorAll('img').length;
-  var body = document.querySelector('body');
-  var percent = 100 / imagesCount;
-  var progress = 0;
-  var loadedImg = 0;
-  setTimeout(function () {
-    for (var i = 0; i < imagesCount; i++) {
-      var img_copy = new Image();
-      img_copy.src = document.images[i].src;
-      img_copy.onload = img_load;
-      img_copy.onerror = img_load;
-    }
-
-    function img_load() {
+  if (document.querySelector('.jsPreloader')) {
+    var img_load = function img_load() {
       progress += percent;
       loadedImg++;
+      unlock(progress, loadedImg);
+    };
+
+    var unlock = function unlock(progress, loadedImg) {
       preloaderPercentage.innerHTML = Math.round(progress) + ' %';
-      console.log(Math.round(progress));
+      preloaderShadow.style.opacity = Math.round(progress) / 100;
 
       if (progress >= 100 || loadedImg == imagesCount) {
         setTimeout(function () {
           preloader.classList.add('is-loaded');
-          body.classList.add('is-loaded');
+          body.classList.remove('is-loaded');
         }, 250);
       }
-    }
-  }, 500);
+    };
+
+    var preloader = document.querySelector('.jsPreloader');
+    var preloaderPercentage = document.querySelector('.jsPreloaderPercentage');
+    var preloaderShadow = document.querySelector('.jsPreloaderShadow');
+    var imagesCount = document.querySelectorAll('img').length;
+    var body = document.querySelector('body');
+    var percent = 100 / imagesCount;
+    var progress = 0;
+    var loadedImg = 0;
+    body.classList.add('is-loaded');
+    preloaderShadow.style.opacity = '0';
+    setTimeout(function () {
+      if (imagesCount != 0) {
+        for (var i = 0; i < imagesCount; i++) {
+          var img_copy = new Image();
+          img_copy.src = document.images[i].src;
+          img_copy.onload = img_load;
+          img_copy.onerror = img_load;
+        }
+      } else {
+        progress = 100;
+        loadedImg;
+        unlock(progress, loadedImg);
+      }
+    }, 500);
+  }
 });
 
 /***/ }),
@@ -115,11 +130,13 @@ document.addEventListener('DOMContentLoaded', function () {
 /***/ (function() {
 
 document.addEventListener('DOMContentLoaded', function () {
-  var scrollItem = document.querySelector('.jsSrollItem');
-  document.addEventListener('scroll', function () {
-    var angle = window.pageYOffset / 10;
-    scrollItem.style.transform = 'rotate(' + angle + 'deg)';
-  });
+  if (document.querySelector('.jsSrollItem')) {
+    var scrollItem = document.querySelector('.jsSrollItem');
+    document.addEventListener('scroll', function () {
+      var angle = window.pageYOffset / 10;
+      scrollItem.style.transform = 'rotate(' + angle + 'deg)';
+    });
+  }
 });
 
 /***/ }),
@@ -167,251 +184,437 @@ for (var index = 0; index < serviceCards.length; index++) {
 var gsap = __webpack_require__(358);
 // EXTERNAL MODULE: ./node_modules/gsap/ScrollTrigger.js + 1 modules
 var ScrollTrigger = __webpack_require__(92);
+// EXTERNAL MODULE: ./node_modules/gsap/ScrollToPlugin.js
+var ScrollToPlugin = __webpack_require__(127);
 ;// CONCATENATED MODULE: ./src/components/anim/scripts.js
 
 
-gsap/* default.registerPlugin */.ZP.registerPlugin(ScrollTrigger/* ScrollTrigger */.i);
+
+gsap/* gsap.registerPlugin */.p8.registerPlugin(ScrollTrigger/* ScrollTrigger */.i, ScrollToPlugin/* ScrollToPlugin */.L);
 document.addEventListener('DOMContentLoaded', function () {
-  // BITRIX
-  var introItems = document.querySelectorAll('.section-intro__item');
-  var sectionIntro = document.querySelector('.section-intro');
-  var introTl = gsap/* default.timeline */.ZP.timeline();
+  // INTRO
+  if (document.querySelector('.section-intro')) {
+    var introItems = document.querySelectorAll('.section-intro__item');
+    var sectionIntro = document.querySelector('.section-intro');
+    var tl = gsap/* gsap.timeline */.p8.timeline();
 
-  for (var index = 0; index < introItems.length; index++) {
-    var item = introItems[index];
-    introTl.fromTo(item, {
-      opacity: 0
+    for (var index = 0; index < introItems.length; index++) {
+      var item = introItems[index];
+      tl.fromTo(item, {
+        opacity: 0
+      }, {
+        opacity: 1,
+        delay: index * 0.25,
+        duration: 0.5
+      });
+    }
+
+    tl.play().delay(0.5);
+  } // PROJECTS
+
+
+  if (document.querySelector('.section-projects')) {
+    var projects = document.querySelectorAll('.card-project');
+
+    var _tl = gsap/* gsap.timeline */.p8.timeline();
+
+    for (var _index = 0; _index < projects.length; _index++) {
+      var _item = projects[_index];
+
+      var img = _item.querySelector('.card-project__img');
+
+      var title = _item.querySelector('.card-project__title');
+
+      var text = _item.querySelector('.card-project__text');
+
+      var logo = _item.querySelector('.card-project__logo');
+
+      _tl.fromTo(img, {
+        webkitClipPath: 'inset(0% 100% 100% 0%)',
+        clipPath: 'inset(0% 100% 100% 0%)'
+      }, {
+        webkitClipPath: 'inset(0% 0% 0% 0%)',
+        clipPath: 'inset(0% 0% 0% 0%)',
+        scrollTrigger: {
+          trigger: _item,
+          scrub: 1,
+          start: 'top 95%',
+          end: 'top 65%'
+        }
+      });
+
+      _tl.fromTo(logo, {
+        opacity: 0
+      }, {
+        opacity: 1,
+        scrollTrigger: {
+          trigger: _item,
+          scrub: 1,
+          start: 'top 85%',
+          end: 'top 65%'
+        }
+      });
+
+      _tl.fromTo(title, {
+        y: -15,
+        opacity: 0
+      }, {
+        y: 0,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: title,
+          scrub: 1.25,
+          start: 'top bottom-=10%',
+          end: 'top center+=10%'
+        }
+      });
+
+      _tl.fromTo(text, {
+        y: -35,
+        opacity: 0
+      }, {
+        y: 0,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: text,
+          scrub: 1.5,
+          start: 'top bottom-=10%',
+          end: 'top center+=10%'
+        }
+      });
+    }
+  } // SERVICES
+
+
+  if (document.querySelector('.section-services')) {
+    var services = document.querySelectorAll('.card-service');
+
+    var _tl2 = gsap/* gsap.timeline */.p8.timeline();
+
+    for (var _index2 = 0; _index2 < services.length; _index2++) {
+      var _item2 = services[_index2];
+
+      _tl2.fromTo(_item2, {
+        y: _index2 * 50,
+        opacity: 0,
+        duration: 1
+      }, {
+        y: 0,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: _item2,
+          scrub: 1,
+          start: 'top 90%',
+          end: 'top 70%'
+        }
+      });
+    }
+  } // REASONS
+
+
+  if (document.querySelector('.section-reasons')) {
+    var _tl3 = gsap/* gsap.timeline */.p8.timeline();
+
+    var reasons = document.querySelectorAll('.section-reasons__item');
+    var jsReasonsTitle = document.querySelector('.jsReasonsTitle');
+    var titleIcon = jsReasonsTitle.querySelector('.icon');
+    var sectionReasons = document.querySelector('.section-reasons');
+    var reasonsList = document.querySelector('.section-reasons__list');
+
+    _tl3.fromTo(titleIcon, {
+      x: 100
     }, {
-      opacity: 1,
-      delay: index * 0.25,
+      delay: 0.5,
+      x: 0,
+      scrollTrigger: {
+        trigger: sectionReasons,
+        start: 'top 75%'
+      }
+    });
+
+    _tl3.fromTo(titleIcon, {
+      fill: '#262626',
       duration: 0.5
-    });
-  }
-
-  introTl.play().delay(0.5); // PROJECTS
-
-  var projects = document.querySelectorAll('.card-project');
-
-  for (var _index = 0; _index < projects.length; _index++) {
-    var _item = projects[_index];
-
-    var img = _item.querySelector('.card-project__img');
-
-    var title = _item.querySelector('.card-project__title');
-
-    var text = _item.querySelector('.card-project__text');
-
-    var logo = _item.querySelector('.card-project__logo');
-
-    gsap/* default.fromTo */.ZP.fromTo(img, {
-      webkitClipPath: 'inset(0% 100% 100% 0%)',
-      clipPath: 'inset(0% 100% 100% 0%)'
     }, {
-      webkitClipPath: 'inset(0% 0% 0% 0%)',
-      clipPath: 'inset(0% 0% 0% 0%)',
+      fill: '#C34F44',
+      delay: 0.5,
       scrollTrigger: {
-        trigger: _item,
-        scrub: 1,
-        start: 'top 95%',
-        end: 'top 65%'
+        trigger: sectionReasons,
+        start: 'top 75%'
       }
     });
-    gsap/* default.fromTo */.ZP.fromTo(logo, {
-      opacity: 0
+
+    _tl3.fromTo(sectionReasons, {
+      color: '#262626',
+      backgroundColor: '#F6F6F6',
+      duration: 0.5
     }, {
-      opacity: 1,
+      delay: 1.25,
+      color: '#fff',
+      backgroundColor: '#151515',
       scrollTrigger: {
-        trigger: _item,
-        scrub: 1,
-        start: 'top 85%',
-        end: 'top 65%'
+        trigger: sectionReasons,
+        start: 'top 75%'
       }
     });
-    gsap/* default.fromTo */.ZP.fromTo(title, {
-      y: -15,
-      opacity: 0
+
+    _tl3.fromTo(reasonsList, {
+      marginTop: 250
     }, {
-      y: 0,
-      opacity: 1,
+      marginTop: 0,
       scrollTrigger: {
-        trigger: title,
-        scrub: 1.25,
-        start: 'top bottom-=10%',
-        end: 'top center+=10%'
-      }
-    });
-    gsap/* default.fromTo */.ZP.fromTo(text, {
-      y: -35,
-      opacity: 0
-    }, {
-      y: 0,
-      opacity: 1,
-      scrollTrigger: {
-        trigger: text,
-        scrub: 1.5,
-        start: 'top bottom-=10%',
-        end: 'top center+=10%'
-      }
-    });
-  } // SERVICES
-
-
-  var services = document.querySelectorAll('.card-service');
-
-  for (var _index2 = 0; _index2 < services.length; _index2++) {
-    var _item2 = services[_index2];
-    gsap/* default.fromTo */.ZP.fromTo(_item2, {
-      y: _index2 * 50,
-      opacity: 0,
-      duration: 1
-    }, {
-      y: 0,
-      opacity: 1,
-      scrollTrigger: {
-        trigger: _item2,
-        scrub: 1,
-        start: 'top 90%',
-        end: 'top 70%'
-      }
-    });
-  } // SERVICES
-
-
-  var reasons = document.querySelectorAll('.section-reasons__item');
-  var jsReasonsTitle = document.querySelector('.jsReasonsTitle');
-  var titleIcon = jsReasonsTitle.querySelector('.icon');
-  var sectionReasons = document.querySelector('.section-reasons');
-  var reasonsList = document.querySelector('.section-reasons__list');
-  gsap/* default.fromTo */.ZP.fromTo(titleIcon, {
-    x: 100
-  }, {
-    delay: 0.5,
-    x: 0,
-    scrollTrigger: {
-      trigger: sectionReasons,
-      start: 'top 75%'
-    }
-  });
-  gsap/* default.fromTo */.ZP.fromTo(titleIcon, {
-    fill: '#262626',
-    duration: 0.5
-  }, {
-    fill: '#C34F44',
-    delay: 0.5,
-    scrollTrigger: {
-      trigger: sectionReasons,
-      start: 'top 75%'
-    }
-  });
-  gsap/* default.fromTo */.ZP.fromTo(sectionReasons, {
-    color: '#262626',
-    backgroundColor: '#F6F6F6',
-    duration: 0.5
-  }, {
-    delay: 1.25,
-    color: '#fff',
-    backgroundColor: '#151515',
-    scrollTrigger: {
-      trigger: sectionReasons,
-      start: 'top 75%'
-    }
-  });
-  gsap/* default.fromTo */.ZP.fromTo(reasonsList, {
-    marginTop: 250
-  }, {
-    marginTop: 0,
-    scrollTrigger: {
-      trigger: sectionReasons,
-      start: 'top 65%',
-      end: 'top 35%',
-      scrub: 1
-    }
-  });
-
-  for (var _index3 = 0; _index3 < reasons.length; _index3++) {
-    var _item3 = reasons[_index3];
-    gsap/* default.fromTo */.ZP.fromTo(_item3, {
-      top: _index3 == 0 ? _index3 * 100 + 200 : _index3 * 492
-    }, {
-      top: _index3 * 100,
-      delay: 2,
-      scrollTrigger: {
-        trigger: reasonsList,
-        start: 'top ' + (95 - _index3 * 7.5) + '%',
-        end: 'top ' + (60 - _index3 * 7.5) + '%',
+        trigger: sectionReasons,
+        start: 'top 65%',
+        end: 'top 35%',
         scrub: 1
       }
     });
+
+    for (var _index3 = 0; _index3 < reasons.length; _index3++) {
+      var _item3 = reasons[_index3];
+
+      _tl3.fromTo(_item3, {
+        top: _index3 == 0 ? _index3 * 100 + 200 : _index3 * 492
+      }, {
+        top: _index3 * 100,
+        delay: 2,
+        scrollTrigger: {
+          trigger: reasonsList,
+          start: 'top ' + (95 - _index3 * 7.5) + '%',
+          end: 'top ' + (60 - _index3 * 7.5) + '%',
+          scrub: 1
+        }
+      });
+    }
   } // BITRIX
 
 
-  var bitrixItems = document.querySelectorAll('.section-bitrix__item');
-  var jsBitrixTitle = document.querySelector('.jsBitrixTitle');
-  var sectionBitrix = document.querySelector('.section-bitrix');
-  gsap/* default.to */.ZP.to(jsBitrixTitle, {
-    className: 'is-swapped',
-    delay: 1,
-    scrollTrigger: {
-      trigger: sectionBitrix,
-      start: 'top 75%'
-    }
-  });
+  if (document.querySelector('.section-bitrix')) {
+    var _tl4 = gsap/* gsap.timeline */.p8.timeline();
 
-  for (var _index4 = 0; _index4 < bitrixItems.length; _index4++) {
-    var _item4 = bitrixItems[_index4];
+    var bitrixItems = document.querySelectorAll('.section-bitrix__item');
+    var jsBitrixTitle = document.querySelector('.jsBitrixTitle');
+    var sectionBitrix = document.querySelector('.section-bitrix');
 
-    var content = _item4.querySelector('.section-bitrix__item-content');
-
-    var xStart = '100%';
-
-    if (_index4 == 0) {
-      xStart = '-100%';
-    } else if (_index4 % 2 == 0) {
-      xStart = '-100%';
-    }
-
-    gsap/* default.fromTo */.ZP.fromTo(_item4, {
-      x: xStart,
-      opacity: 0
-    }, {
-      x: 0,
-      opacity: 1,
+    _tl4.to(jsBitrixTitle, {
+      className: 'is-swapped',
+      delay: 1,
       scrollTrigger: {
-        trigger: _item4,
-        start: 'top bottom',
-        end: 'top 75%',
-        scrub: true
+        trigger: sectionBitrix,
+        start: 'top 75%'
       }
     });
-    gsap/* default.fromTo */.ZP.fromTo(content, {
-      opacity: 0
-    }, {
-      opacity: 1,
-      scrollTrigger: {
-        trigger: _item4,
-        start: 'top 90%',
-        end: 'top 50%',
-        scrub: true
+
+    for (var _index4 = 0; _index4 < bitrixItems.length; _index4++) {
+      var _item4 = bitrixItems[_index4];
+
+      var content = _item4.querySelector('.section-bitrix__item-content');
+
+      var xStart = '100%';
+
+      if (_index4 == 0) {
+        xStart = '-100%';
+      } else if (_index4 % 2 == 0) {
+        xStart = '-100%';
       }
-    });
+
+      _tl4.fromTo(_item4, {
+        x: xStart,
+        opacity: 0
+      }, {
+        x: 0,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: _item4,
+          start: 'top bottom',
+          end: 'top 75%',
+          scrub: true
+        }
+      });
+
+      _tl4.fromTo(content, {
+        opacity: 0
+      }, {
+        opacity: 1,
+        scrollTrigger: {
+          trigger: _item4,
+          start: 'top 90%',
+          end: 'top 50%',
+          scrub: true
+        }
+      });
+    }
   } // PRODUCTS
 
 
-  var products = document.querySelectorAll('.card-product');
+  if (document.querySelector('.section-products')) {
+    var _tl5 = gsap/* gsap.timeline */.p8.timeline();
 
-  for (var _index5 = 0; _index5 < products.length; _index5++) {
-    var _item5 = products[_index5];
-    gsap/* default.fromTo */.ZP.fromTo(products[_index5], {
-      opacity: 0,
-      y: 50
+    var products = document.querySelectorAll('.card-product');
+
+    for (var _index5 = 0; _index5 < products.length; _index5++) {
+      var _item5 = products[_index5];
+
+      _tl5.fromTo(products[_index5], {
+        opacity: 0,
+        y: 50
+      }, {
+        opacity: 1,
+        y: 0,
+        scrollTrigger: {
+          trigger: products[_index5],
+          start: '-25% 100%',
+          end: 'top 85%',
+          scrub: true
+        }
+      });
+    }
+  } // if(document.querySelector('.section-services')){
+  //     const tl = gsap.timeline();
+  // }   
+  // if(document.querySelector('.section-services')){
+  //     const tl = gsap.timeline();
+  // }
+
+
+  if (document.querySelector('.jsProject')) {
+    var _projects = document.querySelectorAll('.jsProject');
+
+    var _loop = function _loop(_index6) {
+      var project = _projects[_index6];
+
+      window.onload = function () {
+        preloaderReset();
+      };
+
+      var introButton = project.querySelector('.jsProjectIntroButton');
+      var preloader = project.querySelector('.jsProjectPreloader');
+      var preloaderLogo = project.querySelector('.jsProjectPreloaderLogo');
+      var body = document.querySelector('body');
+      introButton.addEventListener('click', function (e) {
+        preloaderReset();
+        gsap/* gsap.to */.p8.to(window, {
+          duration: 2,
+          ease: "expo.inOut",
+          scrollTo: preloader
+        });
+        gsap/* gsap.fromTo */.p8.fromTo(preloaderLogo, {
+          opacity: 0
+        }, {
+          opacity: 1,
+          delay: 1.75,
+          duration: 1.5,
+          ease: "expo.inOut"
+        });
+        setTimeout(function () {
+          gsap/* gsap.to */.p8.to(preloader, {
+            opacity: 0,
+            duration: 2,
+            ease: "expo.inOut"
+          });
+        }, 3000);
+        setTimeout(function () {
+          body.classList.remove('is-locked');
+        }, 4000);
+      });
+
+      function preloaderReset() {
+        body.classList.add('is-locked');
+        gsap/* gsap.to */.p8.to(preloader, {
+          opacity: 1,
+          duration: 0
+        });
+        gsap/* gsap.to */.p8.to(preloaderLogo, {
+          opacity: 1,
+          duration: 0
+        });
+      }
+    };
+
+    for (var _index6 = 0; _index6 < _projects.length; _index6++) {
+      _loop(_index6);
+    }
+  }
+
+  if (document.querySelector('.richness')) {
+    var _tl6 = gsap/* gsap.timeline */.p8.timeline();
+
+    var screen1img = document.querySelector('.richness__screen--1 .richness__screen-img');
+    var screen2img = document.querySelector('.richness__screen--2 .richness__screen-img');
+    var screen3img = document.querySelector('.richness__screen--3 .richness__screen-img');
+    var screen4img = document.querySelector('.richness__screen--4 .richness__screen-img--2');
+    var screen5img = document.querySelector('.richness__screen--5 .richness__screen-img');
+    var screen6img = document.querySelector('.richness__screen--6 .richness__screen-img');
+
+    _tl6.fromTo(screen1img, {
+      x: '-10%'
     }, {
-      opacity: 1,
-      y: 0,
+      x: '0%',
       scrollTrigger: {
-        trigger: products[_index5],
-        start: '-25% 100%',
-        end: 'top 85%',
-        scrub: true
+        trigger: screen1img,
+        start: 'top 100%',
+        end: 'bottom 0%',
+        scrub: 1
+      }
+    });
+
+    _tl6.fromTo(screen2img, {
+      y: '100px'
+    }, {
+      y: '0%',
+      scrollTrigger: {
+        trigger: screen2img,
+        start: 'top 100%',
+        end: 'center 50%',
+        scrub: 1
+      }
+    });
+
+    _tl6.fromTo(screen3img, {
+      x: '0%'
+    }, {
+      x: '-15%',
+      scrollTrigger: {
+        trigger: screen3img,
+        start: 'top 100%',
+        end: 'bottom 0%',
+        scrub: 1
+      }
+    });
+
+    _tl6.fromTo(screen4img, {
+      y: '100px'
+    }, {
+      y: '0px',
+      scrollTrigger: {
+        trigger: screen4img,
+        start: 'top 100%',
+        end: 'center 50%',
+        scrub: 1
+      }
+    });
+
+    _tl6.fromTo(screen5img, {
+      x: '80%'
+    }, {
+      x: '52%',
+      scrollTrigger: {
+        trigger: screen5img,
+        start: 'top 100%',
+        end: 'center 50%',
+        scrub: 1
+      }
+    });
+
+    _tl6.fromTo(screen6img, {
+      x: '-48%'
+    }, {
+      x: '-24%',
+      scrollTrigger: {
+        trigger: screen6img,
+        start: 'top 100%',
+        end: 'center 50%',
+        scrub: 1
       }
     });
   }
