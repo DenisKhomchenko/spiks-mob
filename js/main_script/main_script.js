@@ -216,44 +216,56 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.querySelector('.section-projects')) {
     var projects = document.querySelectorAll('.card-project');
 
-    var _tl = gsap/* gsap.timeline */.p8.timeline();
-
     for (var _index = 0; _index < projects.length; _index++) {
-      var _item = projects[_index];
-
-      var img = _item.querySelector('.card-project__img');
+      var _item = projects[_index]; // let img = item.querySelector('.card-project__img');
+      // let logo = item.querySelector('.card-project__logo');
 
       var title = _item.querySelector('.card-project__title');
 
       var text = _item.querySelector('.card-project__text');
 
-      var logo = _item.querySelector('.card-project__logo');
+      var _tl = gsap/* gsap.timeline */.p8.timeline();
 
-      _tl.fromTo(img, {
-        webkitClipPath: 'inset(0% 100% 100% 0%)',
-        clipPath: 'inset(0% 100% 100% 0%)'
-      }, {
-        webkitClipPath: 'inset(0% 0% 0% 0%)',
-        clipPath: 'inset(0% 0% 0% 0%)',
+      _tl.to(_item, {
         scrollTrigger: {
           trigger: _item,
-          scrub: 1,
           start: 'top 95%',
-          end: 'top 65%'
+          toggleClass: 'is-visible'
         }
-      });
+      }); // tl.fromTo(
+      //     img,
+      //     {
+      //         webkitClipPath: 'inset(0% 100% 100% 0%)',
+      //         clipPath: 'inset(0% 100% 100% 0%)',
+      //     },
+      //     {
+      //         webkitClipPath: 'inset(0% 0% 0% 0%)',
+      //         clipPath: 'inset(0% 0% 0% 0%)',
+      //         scrollTrigger: {
+      //             trigger: item, 
+      //             // scrub: 1,
+      //             start: 'top 95%',
+      //             // end: 'top 65%',
+      //             toggleClass: 'is-visible', 
+      //         },
+      //     },
+      // )
+      // tl.fromTo(
+      //     logo,
+      //     {
+      //         opacity: 0,
+      //     },
+      //     {
+      //         opacity: 1,
+      //         scrollTrigger: {
+      //             trigger: item, 
+      //             scrub: 1,
+      //             start: 'top 85%',
+      //             end: 'top 65%',
+      //         },
+      //     },
+      // )
 
-      _tl.fromTo(logo, {
-        opacity: 0
-      }, {
-        opacity: 1,
-        scrollTrigger: {
-          trigger: _item,
-          scrub: 1,
-          start: 'top 85%',
-          end: 'top 65%'
-        }
-      });
 
       _tl.fromTo(title, {
         y: -15,
@@ -264,8 +276,8 @@ document.addEventListener('DOMContentLoaded', function () {
         scrollTrigger: {
           trigger: title,
           scrub: 1.25,
-          start: 'top bottom-=10%',
-          end: 'top center+=10%'
+          start: 'top 100%',
+          end: 'bottom 80%'
         }
       });
 
@@ -278,8 +290,8 @@ document.addEventListener('DOMContentLoaded', function () {
         scrollTrigger: {
           trigger: text,
           scrub: 1.5,
-          start: 'top bottom-=10%',
-          end: 'top center+=10%'
+          start: 'top 100%',
+          end: 'bottom 80%'
         }
       });
     }
@@ -289,10 +301,10 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.querySelector('.section-services')) {
     var services = document.querySelectorAll('.card-service');
 
-    var _tl2 = gsap/* gsap.timeline */.p8.timeline();
-
     for (var _index2 = 0; _index2 < services.length; _index2++) {
       var _item2 = services[_index2];
+
+      var _tl2 = gsap/* gsap.timeline */.p8.timeline();
 
       _tl2.fromTo(_item2, {
         y: _index2 * 50,
@@ -356,32 +368,41 @@ document.addEventListener('DOMContentLoaded', function () {
         trigger: sectionReasons,
         start: 'top 75%'
       }
-    });
+    }); // tl.fromTo(
+    //     reasonsList,
+    //     {
+    //         marginTop: 500,
+    //         // y:0,
+    //     },
+    //     {
+    //         marginTop:0,
+    //         // y: -50,
+    //         scrollTrigger: {
+    //             trigger: reasonsList, 
+    //             start: 'top 100%',
+    //             end: 'top 65%',
+    //             scrub: 1,
+    //         },
+    //     },
+    // )
 
-    _tl3.fromTo(reasonsList, {
-      marginTop: 250
-    }, {
-      marginTop: 0,
-      scrollTrigger: {
-        trigger: sectionReasons,
-        start: 'top 65%',
-        end: 'top 35%',
-        scrub: 1
-      }
-    });
 
     for (var _index3 = 0; _index3 < reasons.length; _index3++) {
       var _item3 = reasons[_index3];
 
       _tl3.fromTo(_item3, {
-        top: _index3 == 0 ? _index3 * 100 + 200 : _index3 * 492
+        // top: (index == 0 ? (index * 100 + 200) : (index * 492))
+        marginTop: 492
       }, {
-        top: _index3 * 100,
+        // top: (index * 100),
+        marginTop: 0,
         delay: 2,
         scrollTrigger: {
-          trigger: reasonsList,
-          start: 'top ' + (95 - _index3 * 7.5) + '%',
-          end: 'top ' + (60 - _index3 * 7.5) + '%',
+          trigger: _item3,
+          // start: 'top ' + (95 - index * 7.5) +'%',
+          // end: 'top ' + (60 - index * 7.5) +'%',
+          start: 'top 100%',
+          end: 'top 50%',
           scrub: 1
         }
       });
@@ -448,24 +469,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   if (document.querySelector('.section-products')) {
-    var _tl5 = gsap/* gsap.timeline */.p8.timeline();
-
     var products = document.querySelectorAll('.card-product');
 
     for (var _index5 = 0; _index5 < products.length; _index5++) {
       var _item5 = products[_index5];
 
-      _tl5.fromTo(products[_index5], {
-        opacity: 0,
-        y: 50
-      }, {
-        opacity: 1,
-        y: 0,
+      var _tl5 = gsap/* gsap.timeline */.p8.timeline();
+
+      _tl5.to(_item5, {
         scrollTrigger: {
-          trigger: products[_index5],
-          start: '-25% 100%',
-          end: 'top 85%',
-          scrub: true
+          trigger: _item5,
+          start: 'top 85%',
+          scrub: true,
+          toggleClass: 'is-visible'
         }
       });
     }
@@ -484,6 +500,10 @@ document.addEventListener('DOMContentLoaded', function () {
       var project = _projects[_index6];
 
       window.onload = function () {
+        gsap/* gsap.to */.p8.to(window, {
+          duration: 0.1,
+          scrollTo: 0
+        });
         preloaderReset();
       };
 
@@ -507,19 +527,26 @@ document.addEventListener('DOMContentLoaded', function () {
           ease: "expo.inOut"
         });
         setTimeout(function () {
-          gsap/* gsap.to */.p8.to(preloader, {
+          gsap/* gsap.to */.p8.to(preloaderLogo, {
             opacity: 0,
-            duration: 2,
+            duration: 1.5,
             ease: "expo.inOut"
           });
-        }, 3000);
+        }, 3500);
         setTimeout(function () {
-          body.classList.remove('is-locked');
-        }, 4000);
+          gsap/* gsap.to */.p8.to(preloader, {
+            opacity: 0,
+            duration: 1.5,
+            ease: "expo.inOut"
+          });
+        }, 3750);
+        setTimeout(function () {
+          body.style = '';
+        }, 4750);
       });
 
       function preloaderReset() {
-        body.classList.add('is-locked');
+        body.style.overflow = 'hidden';
         gsap/* gsap.to */.p8.to(preloader, {
           opacity: 1,
           duration: 0
@@ -539,12 +566,27 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.querySelector('.richness')) {
     var _tl6 = gsap/* gsap.timeline */.p8.timeline();
 
+    var typograpyImg = document.querySelector('.richness__typography-img');
     var screen1img = document.querySelector('.richness__screen--1 .richness__screen-img');
     var screen2img = document.querySelector('.richness__screen--2 .richness__screen-img');
     var screen3img = document.querySelector('.richness__screen--3 .richness__screen-img');
     var screen4img = document.querySelector('.richness__screen--4 .richness__screen-img--2');
     var screen5img = document.querySelector('.richness__screen--5 .richness__screen-img');
     var screen6img = document.querySelector('.richness__screen--6 .richness__screen-img');
+
+    _tl6.fromTo(typograpyImg, {
+      y: '100px',
+      opacity: 0
+    }, {
+      y: '0%',
+      opacity: 1,
+      scrollTrigger: {
+        trigger: typograpyImg,
+        start: 'top 100%',
+        end: 'center 50%',
+        scrub: 1
+      }
+    });
 
     _tl6.fromTo(screen1img, {
       x: '-10%'
@@ -614,6 +656,120 @@ document.addEventListener('DOMContentLoaded', function () {
         trigger: screen6img,
         start: 'top 100%',
         end: 'center 50%',
+        scrub: 1
+      }
+    });
+  }
+
+  if (document.querySelector('.olympia')) {
+    var _tl7 = gsap/* gsap.timeline */.p8.timeline();
+
+    var screen1img1 = document.querySelector('.olympia__screen--1 .olympia__screen-img--1');
+    var screen1img2 = document.querySelector('.olympia__screen--1 .olympia__screen-img--2');
+    var typographyImg = document.querySelector('.olympia__screen--typography .olympia__typography-img');
+    var typographyColorsWrapper = document.querySelector('.olympia__typography-colors');
+    var typographyColors = document.querySelectorAll('.olympia__typography-color');
+
+    var _screen2img = document.querySelector('.olympia__screen--2 .olympia__screen-img');
+
+    var _screen3img = document.querySelectorAll('.olympia__screen--3 .olympia__screen-img');
+
+    var _screen4img = document.querySelector('.olympia__screen--4 .olympia__screen-img');
+
+    _tl7.fromTo(screen1img1, {
+      x: '-20%'
+    }, {
+      x: '0%',
+      scrollTrigger: {
+        trigger: screen1img1,
+        start: 'top 100%',
+        end: '25% 50%',
+        scrub: 1
+      }
+    });
+
+    _tl7.fromTo(screen1img2, {
+      x: '35%'
+    }, {
+      x: '0%',
+      scrollTrigger: {
+        trigger: screen1img2,
+        start: 'top 100%',
+        end: 'center 50%',
+        scrub: 1
+      }
+    });
+
+    _tl7.fromTo(typographyImg, {
+      y: 50,
+      opacity: 0
+    }, {
+      y: 0,
+      opacity: 1,
+      scrollTrigger: {
+        trigger: typographyImg,
+        start: 'top 100%',
+        end: 'top 50%',
+        scrub: 1
+      }
+    });
+
+    for (var _index7 = 0; _index7 < typographyColors.length; _index7++) {
+      var _item6 = typographyColors[_index7];
+
+      _tl7.fromTo(_item6, {
+        x: _index7 * 50,
+        opacity: 0
+      }, {
+        x: 0,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: typographyColorsWrapper,
+          start: 'top 95%',
+          end: 'top 50%',
+          scrub: true
+        }
+      });
+    }
+
+    _tl7.fromTo(_screen2img, {
+      y: '100px'
+    }, {
+      y: '0%',
+      scrollTrigger: {
+        trigger: _screen2img,
+        start: 'top 100%',
+        end: 'center 50%',
+        scrub: 1
+      }
+    });
+
+    for (var _index8 = 0; _index8 < _screen3img.length; _index8++) {
+      var _item7 = _screen3img[_index8];
+
+      _tl7.fromTo(_item7, {
+        marginTop: 50 + _index8 * 50,
+        opacity: 0
+      }, {
+        marginTop: 0,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: _item7,
+          start: 'top 100%',
+          end: 'top 60%',
+          scrub: true
+        }
+      });
+    }
+
+    _tl7.fromTo(_screen4img, {
+      y: 30
+    }, {
+      y: 0,
+      scrollTrigger: {
+        trigger: _screen4img,
+        start: 'top 100%',
+        end: 'bottom 100%',
         scrub: 1
       }
     });
