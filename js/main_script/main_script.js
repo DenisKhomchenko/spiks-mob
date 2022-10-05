@@ -186,7 +186,10 @@ var gsap = __webpack_require__(358);
 var ScrollTrigger = __webpack_require__(92);
 // EXTERNAL MODULE: ./node_modules/gsap/ScrollToPlugin.js
 var ScrollToPlugin = __webpack_require__(127);
+// EXTERNAL MODULE: ./node_modules/lodash/lodash.js
+var lodash = __webpack_require__(486);
 ;// CONCATENATED MODULE: ./src/components/anim/scripts.js
+
 
 
 
@@ -546,7 +549,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       function preloaderReset() {
-        body.style.overflow = 'hidden';
+        // body.style.overflow= 'hidden';
         gsap/* gsap.to */.p8.to(preloader, {
           opacity: 1,
           duration: 0
@@ -709,7 +712,7 @@ document.addEventListener('DOMContentLoaded', function () {
       scrollTrigger: {
         trigger: typographyImg,
         start: 'top 100%',
-        end: 'top 50%',
+        end: 'center 50%',
         scrub: 1
       }
     });
@@ -718,15 +721,15 @@ document.addEventListener('DOMContentLoaded', function () {
       var _item6 = typographyColors[_index7];
 
       _tl7.fromTo(_item6, {
-        x: _index7 * 50,
-        opacity: 0
+        x: _index7 * 50 // opacity: 0,
+
       }, {
         x: 0,
-        opacity: 1,
+        // opacity: 1,
         scrollTrigger: {
           trigger: typographyColorsWrapper,
           start: 'top 95%',
-          end: 'top 50%',
+          end: 'center 50%',
           scrub: true
         }
       });
@@ -748,15 +751,15 @@ document.addEventListener('DOMContentLoaded', function () {
       var _item7 = _screen3img[_index8];
 
       _tl7.fromTo(_item7, {
-        marginTop: 50 + _index8 * 50,
-        opacity: 0
+        marginTop: 50 + _index8 * 50 // opacity: 0,
+
       }, {
         marginTop: 0,
-        opacity: 1,
+        // opacity: 1,
         scrollTrigger: {
           trigger: _item7,
           start: 'top 100%',
-          end: 'top 60%',
+          end: 'center 50%',
           scrub: true
         }
       });
@@ -773,6 +776,101 @@ document.addEventListener('DOMContentLoaded', function () {
         scrub: 1
       }
     });
+  }
+
+  if (document.querySelector('.fidesco')) {
+    var _tl8 = gsap/* gsap.timeline */.p8.timeline();
+
+    var _screen1img = document.querySelector('.fidesco__screen--1 .fidesco__screen-img--2');
+
+    var _screen1img2 = document.querySelector('.fidesco__screen--1 .fidesco__screen-img--4');
+
+    var _typographyImg = document.querySelector('.fidesco__screen--typography .fidesco__typography-img');
+
+    var _typographyColorsWrapper = document.querySelector('.fidesco__typography-colors');
+
+    var _typographyColors = document.querySelectorAll('.fidesco__typography-color');
+
+    var screen2imgs = document.querySelectorAll('.fidesco__screen--2 .fidesco__screen-img');
+
+    _tl8.fromTo(_typographyImg, {
+      y: 50,
+      opacity: 0
+    }, {
+      y: 0,
+      opacity: 1,
+      scrollTrigger: {
+        trigger: _typographyImg,
+        start: 'top 100%',
+        end: 'center 50%',
+        scrub: 1
+      }
+    });
+
+    for (var _index9 = 0; _index9 < _typographyColors.length; _index9++) {
+      var _item8 = _typographyColors[_index9];
+
+      _tl8.fromTo(_item8, {
+        y: 50 + _index9 * 50,
+        opacity: 0
+      }, {
+        y: 0,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: _item8,
+          start: 'top 100%',
+          end: 'top 75%',
+          scrub: true
+        }
+      });
+    }
+
+    _tl8.fromTo(_screen1img, {
+      marginTop: 30
+    }, {
+      marginTop: 0,
+      scrollTrigger: {
+        trigger: _screen1img,
+        start: 'top 100%',
+        end: 'center 50%',
+        scrub: 1
+      }
+    });
+
+    _tl8.fromTo(_screen1img2, {
+      marginTop: 60
+    }, {
+      marginTop: 0,
+      scrollTrigger: {
+        trigger: _screen1img2,
+        start: 'top 100%',
+        end: 'center 50%',
+        scrub: 1
+      }
+    });
+
+    for (var _index10 = 0; _index10 < screen2imgs.length; _index10++) {
+      var _item9 = screen2imgs[_index10];
+      var _xStart = '40%';
+
+      if (_index10 == 0) {
+        _xStart = '-40%';
+      } else if (_index10 % 2 == 0) {
+        _xStart = '-40%';
+      }
+
+      _tl8.fromTo(_item9, {
+        x: _xStart
+      }, {
+        x: 0,
+        scrollTrigger: {
+          trigger: _item9,
+          start: 'top 100%',
+          end: 'center 50%',
+          scrub: true
+        }
+      });
+    }
   }
 });
 // EXTERNAL MODULE: ./src/components/preloader/scripts.js
@@ -1035,13 +1133,16 @@ src_init();
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			id: moduleId,
+/******/ 			loaded: false,
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
@@ -1097,9 +1198,30 @@ src_init();
 /******/ 		};
 /******/ 	}();
 /******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	!function() {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	}();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	!function() {
 /******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/node module decorator */
+/******/ 	!function() {
+/******/ 		__webpack_require__.nmd = function(module) {
+/******/ 			module.paths = [];
+/******/ 			if (!module.children) module.children = [];
+/******/ 			return module;
+/******/ 		};
 /******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/runtimeId */
