@@ -513,51 +513,66 @@ document.addEventListener('DOMContentLoaded', function () {
       var introButton = project.querySelector('.jsProjectIntroButton');
       var preloader = project.querySelector('.jsProjectPreloader');
       var preloaderLogo = project.querySelector('.jsProjectPreloaderLogo');
+      var content = project.querySelector('.jsProjectContent');
       var body = document.querySelector('body');
       introButton.addEventListener('click', function (e) {
-        preloaderReset();
-        gsap/* gsap.to */.p8.to(window, {
-          duration: 2,
-          ease: "expo.inOut",
-          scrollTo: preloader
-        });
-        gsap/* gsap.fromTo */.p8.fromTo(preloaderLogo, {
-          opacity: 0
-        }, {
-          opacity: 1,
-          delay: 1.75,
-          duration: 1.5,
-          ease: "expo.inOut"
-        });
-        setTimeout(function () {
-          gsap/* gsap.to */.p8.to(preloaderLogo, {
-            opacity: 0,
+        if (project.querySelector('.jsProjectPreloader')) {
+          preloaderReset();
+          gsap/* gsap.to */.p8.to(window, {
+            duration: 2,
+            ease: "expo.inOut",
+            scrollTo: preloader
+          });
+          gsap/* gsap.fromTo */.p8.fromTo(preloaderLogo, {
+            opacity: 0
+          }, {
+            opacity: 1,
+            delay: 1.75,
             duration: 1.5,
             ease: "expo.inOut"
           });
-        }, 3500);
-        setTimeout(function () {
-          gsap/* gsap.to */.p8.to(preloader, {
-            opacity: 0,
-            duration: 1.5,
-            ease: "expo.inOut"
+          setTimeout(function () {
+            gsap/* gsap.to */.p8.to(preloaderLogo, {
+              opacity: 0,
+              duration: 1.5,
+              ease: "expo.inOut"
+            });
+          }, 3500);
+          setTimeout(function () {
+            gsap/* gsap.to */.p8.to(preloader, {
+              opacity: 0,
+              duration: 1.5,
+              ease: "expo.inOut"
+            });
+          }, 3750);
+          setTimeout(function () {
+            body.style = '';
+          }, 4750);
+        } else {
+          gsap/* gsap.to */.p8.to(window, {
+            duration: 2,
+            ease: "expo.inOut",
+            scrollTo: content
           });
-        }, 3750);
-        setTimeout(function () {
-          body.style = '';
-        }, 4750);
+          setTimeout(function () {
+            body.style = '';
+          }, 2000);
+        }
       });
 
       function preloaderReset() {
-        // body.style.overflow= 'hidden';
-        gsap/* gsap.to */.p8.to(preloader, {
-          opacity: 1,
-          duration: 0
-        });
-        gsap/* gsap.to */.p8.to(preloaderLogo, {
-          opacity: 1,
-          duration: 0
-        });
+        body.style.overflow = 'hidden';
+
+        if (project.querySelector('.jsProjectPreloader')) {
+          gsap/* gsap.to */.p8.to(preloader, {
+            opacity: 1,
+            duration: 0
+          });
+          gsap/* gsap.to */.p8.to(preloaderLogo, {
+            opacity: 1,
+            duration: 0
+          });
+        }
       }
     };
 
@@ -570,12 +585,12 @@ document.addEventListener('DOMContentLoaded', function () {
     var _tl6 = gsap/* gsap.timeline */.p8.timeline();
 
     var typograpyImg = document.querySelector('.richness__typography-img');
-    var screen1img = document.querySelector('.richness__screen--1 .richness__screen-img');
-    var screen2img = document.querySelector('.richness__screen--2 .richness__screen-img');
-    var screen3img = document.querySelector('.richness__screen--3 .richness__screen-img');
-    var screen4img = document.querySelector('.richness__screen--4 .richness__screen-img--2');
-    var screen5img = document.querySelector('.richness__screen--5 .richness__screen-img');
-    var screen6img = document.querySelector('.richness__screen--6 .richness__screen-img');
+    var screen1img = document.querySelector('.richness__screen--1 .richness__img');
+    var screen2img = document.querySelector('.richness__screen--2 .richness__img-wrapper');
+    var screen3img = document.querySelector('.richness__screen--3 .richness__img');
+    var screen4img = document.querySelector('.richness__screen--4 .richness__img-wrapper');
+    var screen5img1 = document.querySelector('.richness__screen--5 .richness__img-wrapper--1');
+    var screen5img2 = document.querySelector('.richness__screen--5 .richness__img-wrapper--2');
 
     _tl6.fromTo(typograpyImg, {
       y: '100px',
@@ -639,24 +654,24 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    _tl6.fromTo(screen5img, {
-      x: '80%'
+    _tl6.fromTo(screen5img1, {
+      x: '60%'
     }, {
-      x: '52%',
+      x: '40%',
       scrollTrigger: {
-        trigger: screen5img,
+        trigger: screen5img1,
         start: 'top 100%',
         end: 'center 50%',
         scrub: 1
       }
     });
 
-    _tl6.fromTo(screen6img, {
-      x: '-48%'
+    _tl6.fromTo(screen5img2, {
+      x: '-52%'
     }, {
-      x: '-24%',
+      x: '-32%',
       scrollTrigger: {
-        trigger: screen6img,
+        trigger: screen5img2,
         start: 'top 100%',
         end: 'center 50%',
         scrub: 1
@@ -667,17 +682,17 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.querySelector('.olympia')) {
     var _tl7 = gsap/* gsap.timeline */.p8.timeline();
 
-    var screen1img1 = document.querySelector('.olympia__screen--1 .olympia__screen-img--1');
-    var screen1img2 = document.querySelector('.olympia__screen--1 .olympia__screen-img--2');
+    var screen1img1 = document.querySelector('.olympia__screen--1 .olympia__img--1');
+    var screen1img2 = document.querySelector('.olympia__screen--1 .olympia__img--2');
     var typographyImg = document.querySelector('.olympia__screen--typography .olympia__typography-img');
     var typographyColorsWrapper = document.querySelector('.olympia__typography-colors');
     var typographyColors = document.querySelectorAll('.olympia__typography-color');
 
-    var _screen2img = document.querySelector('.olympia__screen--2 .olympia__screen-img');
+    var _screen2img = document.querySelector('.olympia__screen--2 .olympia__img');
 
-    var _screen3img = document.querySelectorAll('.olympia__screen--3 .olympia__screen-img');
+    var _screen3img = document.querySelectorAll('.olympia__screen--3 .olympia__img');
 
-    var _screen4img = document.querySelector('.olympia__screen--4 .olympia__screen-img');
+    var _screen4img = document.querySelector('.olympia__screen--4 .olympia__img');
 
     _tl7.fromTo(screen1img1, {
       x: '-20%'
@@ -721,15 +736,15 @@ document.addEventListener('DOMContentLoaded', function () {
       var _item6 = typographyColors[_index7];
 
       _tl7.fromTo(_item6, {
-        x: _index7 * 50 // opacity: 0,
-
+        scale: 0,
+        y: 25
       }, {
-        x: 0,
-        // opacity: 1,
+        scale: 1,
+        y: 0,
         scrollTrigger: {
           trigger: typographyColorsWrapper,
-          start: 'top 95%',
-          end: 'center 50%',
+          start: 'top ' + (100 - _index7 * 10) + '%',
+          end: 'bottom ' + (85 - _index7 * 10) + '%',
           scrub: true
         }
       });
@@ -781,9 +796,9 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.querySelector('.fidesco')) {
     var _tl8 = gsap/* gsap.timeline */.p8.timeline();
 
-    var _screen1img = document.querySelector('.fidesco__screen--1 .fidesco__screen-img--2');
+    var _screen1img = document.querySelector('.fidesco__screen--1 .fidesco__img--2');
 
-    var _screen1img2 = document.querySelector('.fidesco__screen--1 .fidesco__screen-img--4');
+    var _screen1img2 = document.querySelector('.fidesco__screen--1 .fidesco__img--4');
 
     var _typographyImg = document.querySelector('.fidesco__screen--typography .fidesco__typography-img');
 
@@ -791,7 +806,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var _typographyColors = document.querySelectorAll('.fidesco__typography-color');
 
-    var screen2imgs = document.querySelectorAll('.fidesco__screen--2 .fidesco__screen-img');
+    var screen2imgs = document.querySelectorAll('.fidesco__screen--2 .fidesco__img-wrapper');
 
     _tl8.fromTo(_typographyImg, {
       y: 50,
@@ -811,10 +826,12 @@ document.addEventListener('DOMContentLoaded', function () {
       var _item8 = _typographyColors[_index9];
 
       _tl8.fromTo(_item8, {
-        y: 50 + _index9 * 50,
+        // y: (50 + (index * 50)),
+        // backgroundColor: '#fff',
         opacity: 0
       }, {
-        y: 0,
+        // backgroundColor: 'initial',
+        // y: 0,
         opacity: 1,
         scrollTrigger: {
           trigger: _item8,
@@ -826,37 +843,37 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     _tl8.fromTo(_screen1img, {
-      marginTop: 30
+      y: 50
     }, {
-      marginTop: 0,
+      y: -20,
       scrollTrigger: {
         trigger: _screen1img,
         start: 'top 100%',
-        end: 'center 50%',
+        end: 'bottom 50%',
         scrub: 1
       }
     });
 
     _tl8.fromTo(_screen1img2, {
-      marginTop: 60
+      y: 50
     }, {
-      marginTop: 0,
+      y: -20,
       scrollTrigger: {
         trigger: _screen1img2,
         start: 'top 100%',
-        end: 'center 50%',
+        end: 'bottom 50%',
         scrub: 1
       }
     });
 
     for (var _index10 = 0; _index10 < screen2imgs.length; _index10++) {
       var _item9 = screen2imgs[_index10];
-      var _xStart = '40%';
+      var _xStart = '15%';
 
       if (_index10 == 0) {
-        _xStart = '-40%';
+        _xStart = '-15%';
       } else if (_index10 % 2 == 0) {
-        _xStart = '-40%';
+        _xStart = '-15%';
       }
 
       _tl8.fromTo(_item9, {

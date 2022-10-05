@@ -12,9 +12,17 @@
     <link href="css/main_style/main_style.css" rel="stylesheet">
   </head>
   <body>
+    <div class="preloader jsPreloader">
+      <div class="preloader__img preloader__img--1"><span></span></div>
+      <div class="preloader__img preloader__img--2"><span></span></div>
+      <div class="preloader__img preloader__img--3"><span></span></div>
+      <div class="preloader__main"><span class="preloader__percentage jsPreloaderPercentage">0 %</span></div><span
+        class="preloader__shadow jsPreloaderShadow"></span>
+    </div>
     <header class="header jsHeader">
       <div class="container header__container">
-        <div class="header__inner"> <a class="header__logo" href="index.html"> <img src="assets\media\logo.svg"
+        <div class="header__inner"> <a class="header__logo" href="index.html"> <img class="header__logo-main"
+              src="assets\media\logo.svg" alt="" /><img class="header__logo-simple" src="assets\media\logo--simple.svg"
               alt="" /></a><button class="header__burger jsBurgerTrigger"><span> </span></button></div>
       </div>
       <div class="header__content jsBurgerContent">
@@ -38,7 +46,8 @@
             </div>
           </div>
           <div class="header__projects">
-            <h2 class="h2 header__projects-title">[последние проекты]</h2><a class="header__project" href="#">
+            <h2 class="h2 header__projects-title">[последние проекты]</h2><a class="header__project"
+              href="richness.html">
               <div class="header__project-img"><img src="assets\media\projects\header-1.jpg" alt="" /></div>
               <div class="header__project-info">
                 <h3 class="h3 header__project-title">Richness Realty</h3>
@@ -53,7 +62,7 @@
       <section class="project jsProject">
         <div class="project__inner">
           <div class="project-intro project-intro--richness project__intro"
-            style="background-image: url(&quot;../../assets/media/projects/background.png&quot;)">
+            style="background-image: url(&quot;assets/media/projects/background.png&quot;)">
             <h1 class="project-intro__title">RICHNESS <span>REALTY</span></h1>
             <div class="project-intro__info">
               <div class="project-intro__info-item">
@@ -120,31 +129,35 @@
                   </div>
                 </div>
               </div>
-              <div class="richness__screen richness__screen--1"><img class="richness__screen-img"
+              <div class="richness__screen richness__screen--1"><img class="richness__img"
                   src="assets\media\projects\richness\screen-1.png" alt=""></div>
-              <div class="richness__screen richness__screen--2"><img class="richness__screen-img"
-                  src="assets\media\projects\richness\screen-2.png" alt=""></div>
-              <div class="richness__screen richness__screen--3"><img class="richness__screen-img"
+              <div class="richness__screen richness__screen--2">
+                <div class="richness__img-wrapper"><img class="richness__img"
+                    src="assets\media\projects\richness\screen-2.png" alt=""></div>
+              </div>
+              <div class="richness__screen richness__screen--3"><img class="richness__img"
                   src="assets\media\projects\richness\screen-3.jpg" alt=""></div>
               <div class="richness__screen richness__screen--4">
                 <div class="richness__header">
                   <h4 class="text text-plex richness__header-title">Внутренние страницы</h4><span
                     class="richness__header-number">02</span>
-                </div><img class="richness__screen-img richness__screen-img--1"
-                  src="assets\media\projects\richness\screen-4--logo.svg" alt=""><img
-                  class="richness__screen-img richness__screen-img--2" src="assets\media\projects\richness\screen-4.png"
-                  alt="">
+                </div><img class="richness__img richness__img--1"
+                  src="assets\media\projects\richness\screen-4--logo.svg" alt="">
+                <div class="richness__img-wrapper"><img class="richness__img richness__img--2"
+                    src="assets\media\projects\richness\screen-4-1.png" alt=""></div>
               </div>
-              <div class="richness__screen richness__screen--5"><img class="richness__screen-img"
-                  src="assets\media\projects\richness\screen-5.png" alt=""></div>
-              <div class="richness__screen richness__screen--6"><img class="richness__screen-img"
-                  src="assets\media\projects\richness\screen-6.png" alt=""></div>
+              <div class="richness__screen richness__screen--5">
+                <div class="richness__img-wrapper richness__img-wrapper--1"><img class="richness__img richness__img--1"
+                    src="assets\media\projects\richness\screen-4-2.png" alt=""></div>
+                <div class="richness__img-wrapper richness__img-wrapper--2"><img class="richness__img richness__img--2"
+                    src="assets\media\projects\richness\screen-4-3.png" alt=""></div>
+              </div>
             </div>
           </div>
         </div>
       </section>
     </main>
-    <footer class="footer" style="background-image: url('../../assets/media/bg.png')">
+    <footer class="footer" style="background-image: url('assets/media/bg.png')">
       <div class="container footer__container">
         <div class="footer__inner">
           <div class="footer__nav">

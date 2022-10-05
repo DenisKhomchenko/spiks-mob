@@ -12,9 +12,17 @@
     <link href="css/main_style/main_style.css" rel="stylesheet">
   </head>
   <body>
+    <div class="preloader jsPreloader">
+      <div class="preloader__img preloader__img--1"><span></span></div>
+      <div class="preloader__img preloader__img--2"><span></span></div>
+      <div class="preloader__img preloader__img--3"><span></span></div>
+      <div class="preloader__main"><span class="preloader__percentage jsPreloaderPercentage">0 %</span></div><span
+        class="preloader__shadow jsPreloaderShadow"></span>
+    </div>
     <header class="header jsHeader">
       <div class="container header__container">
-        <div class="header__inner"> <a class="header__logo" href="index.html"> <img src="assets\media\logo.svg"
+        <div class="header__inner"> <a class="header__logo" href="index.html"> <img class="header__logo-main"
+              src="assets\media\logo.svg" alt="" /><img class="header__logo-simple" src="assets\media\logo--simple.svg"
               alt="" /></a><button class="header__burger jsBurgerTrigger"><span> </span></button></div>
       </div>
       <div class="header__content jsBurgerContent">
@@ -38,7 +46,8 @@
             </div>
           </div>
           <div class="header__projects">
-            <h2 class="h2 header__projects-title">[последние проекты]</h2><a class="header__project" href="#">
+            <h2 class="h2 header__projects-title">[последние проекты]</h2><a class="header__project"
+              href="richness.html">
               <div class="header__project-img"><img src="assets\media\projects\header-1.jpg" alt="" /></div>
               <div class="header__project-info">
                 <h3 class="h3 header__project-title">Richness Realty</h3>
@@ -53,7 +62,7 @@
       <section class="project jsProject">
         <div class="project__inner">
           <div class="project-intro project-intro--bonagarden project__intro"
-            style="background-image: url(&quot;../../assets/media/projects/background.png&quot;)">
+            style="background-image: url(&quot;assets/media/projects/background.png&quot;)">
             <h1 class="project-intro__title">BONA <span>GARDEN</span></h1>
             <div class="project-intro__info">
               <div class="project-intro__info-item">
@@ -71,34 +80,39 @@
             </div>
           </div>
           <div class="project__content jsProjectContent">
-            <div class="project__preloader jsProjectPreloader"><img class="project__preloader-main"
-                src="assets\media\projects\bonagarden\preloader.jpg" alt=""><img
+            <div class="project__preloader project__preloader--bonagarden jsProjectPreloader"><img
+                class="project__preloader-main" src="assets\media\projects\bonagarden\preloader.jpg" alt=""><img
                 class="project__preloader-logo jsProjectPreloaderLogo"
-                src="assets\media\projects\bonagarden\intro-logo.svg" alt=""></div>
+                src="assets\media\projects\bonagarden\preloader-logo.svg" alt=""></div>
             <div class="bonagarden project__main">
               <div class="bonagarden__intro">
-                <div class="bonagarden__intro-inner"> <img class="bonagarden__intro-logo"
-                    src="assets\media\projects\bonagarden\intro-logo.svg" alt="">
-                  <p class="text-lg text-plex bonagarden__intro-subtitle">Сайт для студии йоги в Петергофе</p>
-                  <div class="bonagarden__intro-info">
-                    <div class="bonagarden__intro-item">
-                      <p class="text text-plex bonagarden__intro-item-title">Год </p>
-                      <p class="text-lg text-plex bonagarden__intro-item-title">2020</p>
-                    </div>
-                    <div class="bonagarden__intro-item">
-                      <p class="text text-plex bonagarden__intro-item-title">Платформа </p>
-                      <p class="text-lg text-plex bonagarden__intro-item-title">Веб</p>
-                    </div>
-                    <div class="bonagarden__intro-item">
-                      <p class="text text-plex bonagarden__intro-item-title">Ссылка </p><a
-                        class="text-lg text-plex bonagarden__intro-item-title" href="https://bonagardenrealty.ru"
-                        target="_blank">bonagardenrealty.ru</a>
+                <div class="bonagarden__intro-inner">
+                  <div class="bonagarden__intro-logo-wrapper"> <img class="bonagarden__intro-logo"
+                      src="assets\media\projects\bonagarden\intro-logo.svg" alt=""></div>
+                  <div class="bonagarden__intro-main">
+                    <p class="text-lg text-plex bonagarden__intro-subtitle">Сайт для студии йоги в Петергофе</p>
+                    <div class="bonagarden__intro-info">
+                      <div class="bonagarden__intro-item">
+                        <p class="text text-medium text-plex bonagarden__intro-item-title">Год </p>
+                        <p class="text-lg text-plex bonagarden__intro-item-text">2020</p>
+                      </div>
+                      <div class="bonagarden__intro-item">
+                        <p class="text text-medium text-plex bonagarden__intro-item-title">Платформа </p>
+                        <p class="text-lg text-plex bonagarden__intro-item-text">Веб</p>
+                      </div>
+                      <div class="bonagarden__intro-item">
+                        <p class="text text-medium text-plex bonagarden__intro-item-title">Ссылка </p><a
+                          class="text-lg text-plex bonagarden__intro-item-text" href="https://bonagarden.ru"
+                          target="_blank">bonagarden.ru</a>
+                      </div>
                     </div>
                   </div>
                 </div><img class="bonagarden__intro-bg" src="assets\media\projects\bonagarden\main.jpg" alt="">
               </div>
-              <div class="bonagarden__screen bonagarden__screen--1"><img class="bonagarden__screen-img"
-                  src="assets\media\projects\bonagarden\screen-1.png" alt=""></div>
+              <div class="bonagarden__screen bonagarden__screen--1">
+                <div class="bonagarden__img-wrapper"><img class="bonagarden__img"
+                    src="assets\media\projects\bonagarden\screen-1.png" alt=""></div>
+              </div>
               <div class="bonagarden__screen bonagarden__screen--typography">
                 <div class="bonagarden__header">
                   <h4 class="text-plex bonagarden__header-title">Типографика</h4>
@@ -107,50 +121,56 @@
                     src="assets\media\projects\bonagarden\typography.svg" alt="">
                   <h4 class="h2 text-plex bonagarden__typography-title">Цвет</h4>
                   <div class="bonagarden__typography-colors">
-                    <div class="bonagarden__typography-color"> <span class="text text-plex">#F08365</span></div>
-                    <div class="bonagarden__typography-color"> <span class="text text-plex">#05FA494</span></div>
-                    <div class="bonagarden__typography-color"> <span class="text text-plex">#E6BE80</span></div>
-                    <div class="bonagarden__typography-color"> <span class="text text-plex">#FFFFFF</span></div>
+                    <div class="bonagarden__typography-color"> <span class="text">#F08365</span></div>
+                    <div class="bonagarden__typography-color"> <span class="text">#05FA494</span></div>
+                    <div class="bonagarden__typography-color"> <span class="text">#E6BE80</span></div>
+                    <div class="bonagarden__typography-color"> <span class="text">#FFFFFF</span></div>
                   </div>
                 </div>
               </div>
               <div class="bonagarden__screen bonagarden__screen--2">
                 <div class="bonagarden__header">
                   <h4 class="text-xl text-plex bonagarden__header-title">Внутренние страницы</h4>
-                </div><img class="bonagarden__screen-img bonagarden__screen-img--1"
-                  src="assets\media\projects\bonagarden\screen-2-pic.svg" alt=""><img
-                  class="bonagarden__screen-img bonagarden__screen-img--2"
-                  src="assets\media\projects\bonagarden\screen-2-1.png" alt=""><img
-                  class="bonagarden__screen-img bonagarden__screen-img--3"
-                  src="assets\media\projects\bonagarden\screen-2-2.png" alt=""><img
-                  class="bonagarden__screen-img bonagarden__screen-img--4"
-                  src="assets\media\projects\bonagarden\screen-2-3.png" alt="">
+                </div><img class="bonagarden__img bonagarden__img--1"
+                  src="assets\media\projects\bonagarden\screen-2-pic.svg" alt="">
+                <div class="bonagarden__img-wrapper bonagarden__img-wrapper--1"><img
+                    class="bonagarden__img bonagarden__img--2" src="assets\media\projects\bonagarden\screen-2-1.png"
+                    alt=""></div>
+                <div class="bonagarden__img-wrapper bonagarden__img-wrapper--2"><img
+                    class="bonagarden__img bonagarden__img--3" src="assets\media\projects\bonagarden\screen-2-2.png"
+                    alt=""></div>
+                <div class="bonagarden__img-wrapper bonagarden__img-wrapper--3"><img
+                    class="bonagarden__img bonagarden__img--4" src="assets\media\projects\bonagarden\screen-2-3.png"
+                    alt=""></div>
               </div>
-              <div class="bonagarden__screen bonagarden__screen--3"><img
-                  class="bonagarden__screen-img bonagarden__screen-img--1"
+              <div class="bonagarden__screen bonagarden__screen--3"><img class="bonagarden__img bonagarden__img--1"
                   src="assets\media\projects\bonagarden\screen-3-1.png" alt=""><img
-                  class="bonagarden__screen-img bonagarden__screen-img--2"
-                  src="assets\media\projects\bonagarden\screen-3-2.png" alt=""></div>
+                  class="bonagarden__img bonagarden__img--2" src="assets\media\projects\bonagarden\screen-3-2.png"
+                  alt=""></div>
               <div class="bonagarden__screen bonagarden__screen--4">
                 <div class="bonagarden__header">
                   <h4 class="text-xl text-plex bonagarden__header-title">Адаптивная версия</h4>
-                </div><img class="bonagarden__screen-img bonagarden__screen-img--1"
-                  src="assets\media\projects\bonagarden\screen-4-logo.svg" alt=""><img
-                  class="bonagarden__screen-img bonagarden__screen-img--2"
-                  src="assets\media\projects\bonagarden\screen-4-1.png" alt=""><img
-                  class="bonagarden__screen-img bonagarden__screen-img--3"
-                  src="assets\media\projects\bonagarden\screen-4-2.png" alt=""><img
-                  class="bonagarden__screen-img bonagarden__screen-img--4"
-                  src="assets\media\projects\bonagarden\screen-4-3.png" alt=""><img
-                  class="bonagarden__screen-img bonagarden__screen-img--5"
-                  src="assets\media\projects\bonagarden\screen-4-4.png" alt="">
+                </div><img class="bonagarden__img bonagarden__img--1"
+                  src="assets\media\projects\bonagarden\screen-4-logo.svg" alt="">
+                <div class="bonagarden__img-wrapper bonagarden__img-wrapper--1"><img
+                    class="bonagarden__img bonagarden__img--2" src="assets\media\projects\bonagarden\screen-4-1.png"
+                    alt=""></div>
+                <div class="bonagarden__img-wrapper bonagarden__img-wrapper--2"><img
+                    class="bonagarden__img bonagarden__img--3" src="assets\media\projects\bonagarden\screen-4-2.png"
+                    alt=""></div>
+                <div class="bonagarden__img-wrapper bonagarden__img-wrapper--3"><img
+                    class="bonagarden__img bonagarden__img--4" src="assets\media\projects\bonagarden\screen-4-3.png"
+                    alt=""></div>
+                <div class="bonagarden__img-wrapper bonagarden__img-wrapper--4"><img
+                    class="bonagarden__img bonagarden__img--5" src="assets\media\projects\bonagarden\screen-4-4.png"
+                    alt=""></div>
               </div>
             </div>
           </div>
         </div>
       </section>
     </main>
-    <footer class="footer" style="background-image: url('../../assets/media/bg.png')">
+    <footer class="footer" style="background-image: url('assets/media/bg.png')">
       <div class="container footer__container">
         <div class="footer__inner">
           <div class="footer__nav">

@@ -12,9 +12,17 @@
     <link href="css/main_style/main_style.css" rel="stylesheet">
   </head>
   <body>
+    <div class="preloader jsPreloader">
+      <div class="preloader__img preloader__img--1"><span></span></div>
+      <div class="preloader__img preloader__img--2"><span></span></div>
+      <div class="preloader__img preloader__img--3"><span></span></div>
+      <div class="preloader__main"><span class="preloader__percentage jsPreloaderPercentage">0 %</span></div><span
+        class="preloader__shadow jsPreloaderShadow"></span>
+    </div>
     <header class="header jsHeader">
       <div class="container header__container">
-        <div class="header__inner"> <a class="header__logo" href="index.html"> <img src="assets\media\logo.svg"
+        <div class="header__inner"> <a class="header__logo" href="index.html"> <img class="header__logo-main"
+              src="assets\media\logo.svg" alt="" /><img class="header__logo-simple" src="assets\media\logo--simple.svg"
               alt="" /></a><button class="header__burger jsBurgerTrigger"><span> </span></button></div>
       </div>
       <div class="header__content jsBurgerContent">
@@ -38,7 +46,8 @@
             </div>
           </div>
           <div class="header__projects">
-            <h2 class="h2 header__projects-title">[последние проекты]</h2><a class="header__project" href="#">
+            <h2 class="h2 header__projects-title">[последние проекты]</h2><a class="header__project"
+              href="richness.html">
               <div class="header__project-img"><img src="assets\media\projects\header-1.jpg" alt="" /></div>
               <div class="header__project-info">
                 <h3 class="h3 header__project-title">Richness Realty</h3>
@@ -53,7 +62,7 @@
       <section class="project jsProject">
         <div class="project__inner">
           <div class="project-intro project-intro--fidesco project__intro"
-            style="background-image: url(&quot;../../assets/media/projects/background.png&quot;)">
+            style="background-image: url(&quot;assets/media/projects/background.png&quot;)">
             <h1 class="project-intro__title">fidesco</h1>
             <div class="project-intro__info">
               <div class="project-intro__info-item">
@@ -117,32 +126,34 @@
                 <div class="fidesco__header"> <span class="fidesco__header-number">2.</span>
                   <h4 class="text fidesco__header-title">Прототипы/ макет</h4>
                 </div>
-                <div class="fidesco__screen-inner fidesco__screen-inner--1"><img
-                    class="fidesco__screen-img fidesco__screen-img--1"
-                    src="assets\media\projects\fidesco\screen-1-1-bg.png" alt=""><img
-                    class="fidesco__screen-img fidesco__screen-img--2"
-                    src="assets\media\projects\fidesco\screen-1-1.png" alt=""></div>
-                <div class="fidesco__screen-inner fidesco__screen-inner--2"><img
-                    class="fidesco__screen-img fidesco__screen-img--3"
-                    src="assets\media\projects\fidesco\screen-1-2-bg.png" alt=""><img
-                    class="fidesco__screen-img fidesco__screen-img--4"
-                    src="assets\media\projects\fidesco\screen-1-2.png" alt=""></div>
+                <div class="fidesco__screen-inner fidesco__screen-inner--1"><img class="fidesco__img fidesco__img--1"
+                    src="assets\media\projects\fidesco\screen-1-1-bg.png" alt="">
+                  <div class="fidesco__img-wrapper fidesco__img-wrapper--1"><img class="fidesco__img fidesco__img--2"
+                      src="assets\media\projects\fidesco\screen-1-1.png" alt=""></div>
+                </div>
+                <div class="fidesco__screen-inner fidesco__screen-inner--2"><img class="fidesco__img fidesco__img--3"
+                    src="assets\media\projects\fidesco\screen-1-2-bg.png" alt="">
+                  <div class="fidesco__img-wrapper fidesco__img-wrapper--2"><img class="fidesco__img fidesco__img--4"
+                      src="assets\media\projects\fidesco\screen-1-2.png" alt=""></div>
+                </div>
               </div>
               <div class="fidesco__screen fidesco__screen--2">
                 <div class="fidesco__header"> <span class="fidesco__header-number">3.</span>
                   <h4 class="text fidesco__header-title">адаптивная версия</h4>
-                </div><img class="fidesco__screen-img fidesco__screen-img--1"
-                  src="assets\media\projects\fidesco\screen-2-1.png" alt=""><img
-                  class="fidesco__screen-img fidesco__screen-img--2" src="assets\media\projects\fidesco\screen-2-2.png"
-                  alt=""><img class="fidesco__screen-img fidesco__screen-img--3"
-                  src="assets\media\projects\fidesco\screen-2-3.png" alt="">
+                </div>
+                <div class="fidesco__img-wrapper"><img class="fidesco__img fidesco__img--1"
+                    src="assets\media\projects\fidesco\screen-2-1.png" alt=""></div>
+                <div class="fidesco__img-wrapper fidesco__img-wrapper--2"><img class="fidesco__img fidesco__img--2"
+                    src="assets\media\projects\fidesco\screen-2-2.png" alt=""></div>
+                <div class="fidesco__img-wrapper"><img class="fidesco__img fidesco__img--3"
+                    src="assets\media\projects\fidesco\screen-2-3.png" alt=""></div>
               </div>
             </div>
           </div>
         </div>
       </section>
     </main>
-    <footer class="footer" style="background-image: url('../../assets/media/bg.png')">
+    <footer class="footer" style="background-image: url('assets/media/bg.png')">
       <div class="container footer__container">
         <div class="footer__inner">
           <div class="footer__nav">
