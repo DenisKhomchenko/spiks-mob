@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (progress >= 100 || loadedImg == imagesCount) {
         setTimeout(function () {
           preloader.classList.add('is-loaded');
-          body.classList.remove('is-loaded');
+          body.classList.remove('_lock');
         }, 250);
       }
     };
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var percent = 100 / imagesCount;
     var progress = 0;
     var loadedImg = 0;
-    body.classList.add('is-loaded');
+    body.classList.add('_lock');
     preloaderShadow.style.opacity = '0';
     setTimeout(function () {
       if (imagesCount != 0) {
@@ -130,11 +130,11 @@ document.addEventListener('DOMContentLoaded', function () {
 /***/ (function() {
 
 document.addEventListener('DOMContentLoaded', function () {
-  if (document.querySelector('.jsSrollItem')) {
-    var scrollItem = document.querySelector('.jsSrollItem');
+  if (document.querySelector('.jsScrollItem')) {
+    var scrollItem = document.querySelector('.jsScrollItem');
     document.addEventListener('scroll', function () {
       var angle = window.pageYOffset / 10;
-      scrollItem.style.transform = 'rotate(' + angle + 'deg)';
+      scrollItem.style.rotate = angle + 'deg';
     });
   }
 });
@@ -186,10 +186,7 @@ var gsap = __webpack_require__(358);
 var ScrollTrigger = __webpack_require__(92);
 // EXTERNAL MODULE: ./node_modules/gsap/ScrollToPlugin.js
 var ScrollToPlugin = __webpack_require__(127);
-// EXTERNAL MODULE: ./node_modules/lodash/lodash.js
-var lodash = __webpack_require__(486);
 ;// CONCATENATED MODULE: ./src/components/anim/scripts.js
-
 
 
 
@@ -219,56 +216,23 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.querySelector('.section-projects')) {
     var projects = document.querySelectorAll('.card-project');
 
+    var _tl = gsap/* gsap.timeline */.p8.timeline();
+
     for (var _index = 0; _index < projects.length; _index++) {
-      var _item = projects[_index]; // let img = item.querySelector('.card-project__img');
-      // let logo = item.querySelector('.card-project__logo');
+      var _item = projects[_index];
 
       var title = _item.querySelector('.card-project__title');
 
       var text = _item.querySelector('.card-project__text');
 
-      var _tl = gsap/* gsap.timeline */.p8.timeline();
-
       _tl.to(_item, {
         scrollTrigger: {
           trigger: _item,
           start: 'top 95%',
+          end: 'bottom 20%',
           toggleClass: 'is-visible'
         }
-      }); // tl.fromTo(
-      //     img,
-      //     {
-      //         webkitClipPath: 'inset(0% 100% 100% 0%)',
-      //         clipPath: 'inset(0% 100% 100% 0%)',
-      //     },
-      //     {
-      //         webkitClipPath: 'inset(0% 0% 0% 0%)',
-      //         clipPath: 'inset(0% 0% 0% 0%)',
-      //         scrollTrigger: {
-      //             trigger: item, 
-      //             // scrub: 1,
-      //             start: 'top 95%',
-      //             // end: 'top 65%',
-      //             toggleClass: 'is-visible', 
-      //         },
-      //     },
-      // )
-      // tl.fromTo(
-      //     logo,
-      //     {
-      //         opacity: 0,
-      //     },
-      //     {
-      //         opacity: 1,
-      //         scrollTrigger: {
-      //             trigger: item, 
-      //             scrub: 1,
-      //             start: 'top 85%',
-      //             end: 'top 65%',
-      //         },
-      //     },
-      // )
-
+      });
 
       _tl.fromTo(title, {
         y: -15,
@@ -304,26 +268,23 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.querySelector('.section-services')) {
     var services = document.querySelectorAll('.card-service');
 
-    for (var _index2 = 0; _index2 < services.length; _index2++) {
-      var _item2 = services[_index2];
+    var _tl2 = gsap/* gsap.timeline */.p8.timeline();
 
-      var _tl2 = gsap/* gsap.timeline */.p8.timeline();
-
-      _tl2.fromTo(_item2, {
-        y: _index2 * 50,
-        opacity: 0,
-        duration: 1
-      }, {
-        y: 0,
-        opacity: 1,
-        scrollTrigger: {
-          trigger: _item2,
-          scrub: 1,
-          start: 'top 90%',
-          end: 'top 70%'
-        }
-      });
-    }
+    _tl2.fromTo(services, {
+      y: 50,
+      opacity: 0,
+      duration: 1
+    }, {
+      y: 0,
+      opacity: 1,
+      stagger: 0.25,
+      scrollTrigger: {
+        trigger: services,
+        scrub: 1,
+        start: 'top 90%',
+        end: 'top 50%'
+      }
+    });
   } // REASONS
 
 
@@ -332,84 +293,89 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var reasons = document.querySelectorAll('.section-reasons__item');
     var jsReasonsTitle = document.querySelector('.jsReasonsTitle');
-    var titleIcon = jsReasonsTitle.querySelector('.icon');
+    var titleSpans = document.querySelectorAll('.jsReasonsTitle span');
+    var titleStrong = document.querySelectorAll('.jsReasonsTitle strong');
+    var titleIcon = document.querySelector('.jsReasonsTitleIcon');
     var sectionReasons = document.querySelector('.section-reasons');
     var reasonsList = document.querySelector('.section-reasons__list');
 
-    _tl3.fromTo(titleIcon, {
-      x: 100
+    _tl3.fromTo(titleSpans, {
+      opacity: 0
     }, {
-      delay: 0.5,
-      x: 0,
+      opacity: 1,
+      stagger: 0.5,
+      scrollTrigger: {
+        trigger: titleSpans,
+        start: 'top 95%',
+        end: 'top 70%',
+        scrub: true
+      }
+    });
+
+    _tl3.fromTo(titleStrong, {
+      opacity: 1
+    }, {
+      opacity: 0,
       scrollTrigger: {
         trigger: sectionReasons,
-        start: 'top 75%'
+        start: 'top 35%',
+        end: 'top 15%',
+        scrub: true
       }
     });
 
     _tl3.fromTo(titleIcon, {
-      fill: '#262626',
-      duration: 0.5
+      x: '150%'
     }, {
-      fill: '#C34F44',
-      delay: 0.5,
+      x: 0,
       scrollTrigger: {
-        trigger: sectionReasons,
-        start: 'top 75%'
+        trigger: jsReasonsTitle,
+        start: 'top 75%',
+        end: 'top 50%',
+        scrub: true
       }
     });
 
     _tl3.fromTo(sectionReasons, {
       color: '#262626',
-      backgroundColor: '#F6F6F6',
-      duration: 0.5
+      fill: '#262626',
+      backgroundColor: '#F6F6F6'
     }, {
-      delay: 1.25,
       color: '#fff',
+      fill: '#C34F44',
       backgroundColor: '#151515',
+      ease: 'none',
       scrollTrigger: {
         trigger: sectionReasons,
-        start: 'top 75%'
+        start: 'top 60%',
+        end: 'top 25%',
+        scrub: true
       }
-    }); // tl.fromTo(
-    //     reasonsList,
-    //     {
-    //         marginTop: 500,
-    //         // y:0,
-    //     },
-    //     {
-    //         marginTop:0,
-    //         // y: -50,
-    //         scrollTrigger: {
-    //             trigger: reasonsList, 
-    //             start: 'top 100%',
-    //             end: 'top 65%',
-    //             scrub: 1,
-    //         },
-    //     },
-    // )
+    });
 
+    _tl3.fromTo(reasonsList, {
+      marginTop: 500
+    }, {
+      marginTop: 0,
+      scrollTrigger: {
+        trigger: sectionReasons,
+        start: 'top 25%',
+        end: 'top 5%',
+        scrub: 1
+      }
+    });
 
-    for (var _index3 = 0; _index3 < reasons.length; _index3++) {
-      var _item3 = reasons[_index3];
-
-      _tl3.fromTo(_item3, {
-        // top: (index == 0 ? (index * 100 + 200) : (index * 492))
-        marginTop: 492
-      }, {
-        // top: (index * 100),
-        marginTop: 0,
-        delay: 2,
-        scrollTrigger: {
-          trigger: _item3,
-          // start: 'top ' + (95 - index * 7.5) +'%',
-          // end: 'top ' + (60 - index * 7.5) +'%',
-          start: 'top 100%',
-          end: 'top 50%',
-          scrub: 1
-        }
-      });
-    }
+    _tl3.fromTo(reasons, {
+      marginBottom: 0
+    }, {
+      marginBottom: -692,
+      scrollTrigger: {
+        trigger: sectionReasons,
+        start: 'top 25%',
+        end: 'bottom 105%',
+        scrub: 1
+      }
+    });
   } // BITRIX
 
 
@@ -424,34 +390,35 @@ document.addEventListener('DOMContentLoaded', function () {
       className: 'is-swapped',
       delay: 1,
       scrollTrigger: {
-        trigger: sectionBitrix,
-        start: 'top 75%'
+        trigger: jsBitrixTitle,
+        start: 'top 75%',
+        scrub: true
       }
     });
 
-    for (var _index4 = 0; _index4 < bitrixItems.length; _index4++) {
-      var _item4 = bitrixItems[_index4];
+    for (var _index2 = 0; _index2 < bitrixItems.length; _index2++) {
+      var _item2 = bitrixItems[_index2];
 
-      var content = _item4.querySelector('.section-bitrix__item-content');
+      var content = _item2.querySelector('.section-bitrix__item-content');
 
       var xStart = '100%';
 
-      if (_index4 == 0) {
+      if (_index2 == 0) {
         xStart = '-100%';
-      } else if (_index4 % 2 == 0) {
+      } else if (_index2 % 2 == 0) {
         xStart = '-100%';
       }
 
-      _tl4.fromTo(_item4, {
+      _tl4.fromTo(_item2, {
         x: xStart,
         opacity: 0
       }, {
         x: 0,
         opacity: 1,
         scrollTrigger: {
-          trigger: _item4,
-          start: 'top bottom',
-          end: 'top 75%',
+          trigger: _item2,
+          start: 'top 100%',
+          end: 'top 60%',
           scrub: true
         }
       });
@@ -461,7 +428,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }, {
         opacity: 1,
         scrollTrigger: {
-          trigger: _item4,
+          trigger: _item2,
           start: 'top 90%',
           end: 'top 50%',
           scrub: true
@@ -474,33 +441,27 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.querySelector('.section-products')) {
     var products = document.querySelectorAll('.card-product');
 
-    for (var _index5 = 0; _index5 < products.length; _index5++) {
-      var _item5 = products[_index5];
+    for (var _index3 = 0; _index3 < products.length; _index3++) {
+      var _item3 = products[_index3];
 
       var _tl5 = gsap/* gsap.timeline */.p8.timeline();
 
-      _tl5.to(_item5, {
+      _tl5.to(_item3, {
         scrollTrigger: {
-          trigger: _item5,
+          trigger: _item3,
           start: 'top 85%',
           scrub: true,
           toggleClass: 'is-visible'
         }
       });
     }
-  } // if(document.querySelector('.section-services')){
-  //     const tl = gsap.timeline();
-  // }   
-  // if(document.querySelector('.section-services')){
-  //     const tl = gsap.timeline();
-  // }
-
+  }
 
   if (document.querySelector('.jsProject')) {
     var _projects = document.querySelectorAll('.jsProject');
 
-    var _loop = function _loop(_index6) {
-      var project = _projects[_index6];
+    var _loop = function _loop(_index4) {
+      var project = _projects[_index4];
 
       window.onload = function () {
         gsap/* gsap.to */.p8.to(window, {
@@ -576,8 +537,8 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     };
 
-    for (var _index6 = 0; _index6 < _projects.length; _index6++) {
-      _loop(_index6);
+    for (var _index4 = 0; _index4 < _projects.length; _index4++) {
+      _loop(_index4);
     }
   }
 
@@ -732,23 +693,20 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    for (var _index7 = 0; _index7 < typographyColors.length; _index7++) {
-      var _item6 = typographyColors[_index7];
-
-      _tl7.fromTo(_item6, {
-        scale: 0,
-        y: 25
-      }, {
-        scale: 1,
-        y: 0,
-        scrollTrigger: {
-          trigger: typographyColorsWrapper,
-          start: 'top ' + (100 - _index7 * 10) + '%',
-          end: 'bottom ' + (85 - _index7 * 10) + '%',
-          scrub: true
-        }
-      });
-    }
+    _tl7.fromTo(typographyColors, {
+      scale: 0,
+      y: 25
+    }, {
+      scale: 1,
+      y: 0,
+      stagger: .25,
+      scrollTrigger: {
+        trigger: typographyColors,
+        start: 'top 100%',
+        end: 'bottom 85%',
+        scrub: true
+      }
+    });
 
     _tl7.fromTo(_screen2img, {
       y: '100px'
@@ -762,17 +720,17 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    for (var _index8 = 0; _index8 < _screen3img.length; _index8++) {
-      var _item7 = _screen3img[_index8];
+    for (var _index5 = 0; _index5 < _screen3img.length; _index5++) {
+      var _item4 = _screen3img[_index5];
 
-      _tl7.fromTo(_item7, {
-        marginTop: 50 + _index8 * 50 // opacity: 0,
+      _tl7.fromTo(_item4, {
+        marginTop: 50 + _index5 * 50 // opacity: 0,
 
       }, {
         marginTop: 0,
         // opacity: 1,
         scrollTrigger: {
-          trigger: _item7,
+          trigger: _item4,
           start: 'top 100%',
           end: 'center 50%',
           scrub: true
@@ -822,25 +780,20 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    for (var _index9 = 0; _index9 < _typographyColors.length; _index9++) {
-      var _item8 = _typographyColors[_index9];
-
-      _tl8.fromTo(_item8, {
-        // y: (50 + (index * 50)),
-        // backgroundColor: '#fff',
-        opacity: 0
-      }, {
-        // backgroundColor: 'initial',
-        // y: 0,
-        opacity: 1,
-        scrollTrigger: {
-          trigger: _item8,
-          start: 'top 100%',
-          end: 'top 75%',
-          scrub: true
-        }
-      });
-    }
+    _tl8.fromTo(_typographyColors, {
+      y: 50,
+      opacity: 0
+    }, {
+      y: 0,
+      stagger: 0.5,
+      opacity: 1,
+      scrollTrigger: {
+        trigger: _typographyColors,
+        start: 'top 90%',
+        end: 'top 55%',
+        scrub: true
+      }
+    });
 
     _tl8.fromTo(_screen1img, {
       y: 50
@@ -866,24 +819,404 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    for (var _index10 = 0; _index10 < screen2imgs.length; _index10++) {
-      var _item9 = screen2imgs[_index10];
+    for (var _index6 = 0; _index6 < screen2imgs.length; _index6++) {
+      var _item5 = screen2imgs[_index6];
       var _xStart = '15%';
 
-      if (_index10 == 0) {
+      if (_index6 == 0) {
         _xStart = '-15%';
-      } else if (_index10 % 2 == 0) {
+      } else if (_index6 % 2 == 0) {
         _xStart = '-15%';
       }
 
-      _tl8.fromTo(_item9, {
+      _tl8.fromTo(_item5, {
         x: _xStart
       }, {
         x: 0,
         scrollTrigger: {
+          trigger: _item5,
+          start: 'top 100%',
+          end: 'center 50%',
+          scrub: true
+        }
+      });
+    }
+  }
+
+  if (document.querySelector('.bonagarden')) {
+    var _tl9 = gsap/* gsap.timeline */.p8.timeline();
+
+    var _screen1img3 = document.querySelector('.bonagarden__screen--1 .bonagarden__img-wrapper');
+
+    var _typographyImg2 = document.querySelector('.bonagarden__screen--typography .bonagarden__typography-img');
+
+    var _typographyColors2 = document.querySelectorAll('.bonagarden__typography-color');
+
+    var _screen2imgs = document.querySelectorAll('.bonagarden__screen--2 .bonagarden__img-wrapper');
+
+    var screen3imgs = document.querySelectorAll('.bonagarden__screen--3 .bonagarden__img');
+    var screen4imgs = document.querySelectorAll('.bonagarden__screen--4 .bonagarden__img-wrapper');
+
+    _tl9.fromTo(_screen1img3, {
+      y: 50
+    }, {
+      y: -20,
+      scrollTrigger: {
+        trigger: _screen1img3,
+        start: 'top 100%',
+        end: 'bottom 50%',
+        scrub: 1
+      }
+    });
+
+    _tl9.fromTo(_typographyImg2, {
+      y: -50,
+      opacity: 0
+    }, {
+      y: 0,
+      opacity: 1,
+      scrollTrigger: {
+        trigger: _typographyImg2,
+        start: 'top 100%',
+        end: 'center 50%',
+        scrub: 1
+      }
+    });
+
+    _tl9.fromTo(_typographyColors2, {
+      y: 30,
+      opacity: 0
+    }, {
+      y: 0,
+      opacity: 1,
+      stagger: 0.5,
+      scrollTrigger: {
+        trigger: _typographyColors2,
+        start: 'top 95%',
+        end: 'top 55%',
+        scrub: true
+      }
+    });
+
+    for (var _index7 = 0; _index7 < _screen2imgs.length; _index7++) {
+      var _item6 = _screen2imgs[_index7];
+
+      _tl9.fromTo(_item6, {
+        y: 80,
+        opacity: 0
+      }, {
+        y: 0,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: _item6,
+          start: 'top 100%',
+          end: 'center 50%',
+          scrub: true
+        }
+      });
+    }
+
+    for (var _index8 = 0; _index8 < screen3imgs.length; _index8++) {
+      var _item7 = screen3imgs[_index8];
+
+      _tl9.fromTo(_item7, {
+        y: 30,
+        scale: 0.9,
+        opacity: 0
+      }, {
+        y: 0,
+        scale: 1,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: _item7,
+          start: 'top 100%',
+          end: 'center 75%',
+          scrub: true
+        }
+      });
+    }
+
+    for (var _index9 = 0; _index9 < screen4imgs.length; _index9++) {
+      var _item8 = screen4imgs[_index9];
+      var _xStart2 = '25%';
+
+      if (_index9 == 0) {
+        _xStart2 = '-25%';
+      } else if (_index9 % 2 == 0) {
+        _xStart2 = '-25%';
+      }
+
+      _tl9.fromTo(_item8, {
+        x: _xStart2,
+        opacity: 0
+      }, {
+        x: 0,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: _item8,
+          start: 'top 100%',
+          end: 'center 50%',
+          scrub: true
+        }
+      });
+    }
+  }
+
+  if (document.querySelector('.getman')) {
+    var _tl10 = gsap/* gsap.timeline */.p8.timeline();
+
+    var _screen1img4 = document.querySelector('.getman__screen--1 .getman__img-wrapper');
+
+    var _typographyImg3 = document.querySelector('.getman__screen--typography .getman__typography-img');
+
+    var _typographyColors3 = document.querySelectorAll('.getman__typography-color');
+
+    var _screen2imgs2 = document.querySelectorAll('.getman__screen--2 .getman__img-wrapper .getman__img');
+
+    var screen3img1 = document.querySelector('.getman__screen--3 .getman__img--1');
+    var screen3img2 = document.querySelector('.getman__screen--3 .getman__img--5');
+
+    var _screen3imgs = document.querySelectorAll('.getman__screen--3 .getman__img-wrapper .getman__img');
+
+    _tl10.fromTo(_screen1img4, {
+      y: 50,
+      scale: 0.9,
+      opacity: 0
+    }, {
+      y: 0,
+      scale: 1,
+      opacity: 1,
+      scrollTrigger: {
+        trigger: _screen1img4,
+        start: 'top 100%',
+        end: 'top 50%',
+        scrub: 1
+      }
+    });
+
+    _tl10.fromTo(_typographyImg3, {
+      y: 30,
+      opacity: 0
+    }, {
+      y: 0,
+      opacity: 1,
+      scrollTrigger: {
+        trigger: _typographyImg3,
+        start: 'top 100%',
+        end: 'top 65%',
+        scrub: 1
+      }
+    });
+
+    _tl10.fromTo(_typographyColors3, {
+      scale: 1.2,
+      opacity: 0
+    }, {
+      scale: 1,
+      opacity: 1,
+      stagger: 0.5,
+      scrollTrigger: {
+        trigger: _typographyColors3,
+        start: 'top 90%',
+        end: 'ещз 65%',
+        scrub: true
+      }
+    });
+
+    for (var _index10 = 0; _index10 < _screen2imgs2.length; _index10++) {
+      var _item9 = _screen2imgs2[_index10];
+
+      _tl10.fromTo(_item9, {
+        y: 50,
+        scale: 1.2,
+        opacity: 0
+      }, {
+        y: 0,
+        scale: 1,
+        opacity: 1,
+        scrollTrigger: {
           trigger: _item9,
           start: 'top 100%',
           end: 'center 50%',
+          scrub: true
+        }
+      });
+    }
+
+    _tl10.fromTo(screen3img1, {
+      y: 30,
+      scale: 1.2,
+      opacity: 0
+    }, {
+      y: 0,
+      scale: 1,
+      opacity: 1,
+      scrollTrigger: {
+        trigger: screen3img1,
+        start: 'top 100%',
+        end: 'center 50%',
+        scrub: true
+      }
+    });
+
+    _tl10.fromTo(screen3img2, {
+      x: '30%',
+      opacity: 0
+    }, {
+      x: 0,
+      opacity: 1,
+      scrollTrigger: {
+        trigger: screen3img2,
+        start: 'top 95%',
+        end: 'top 65%',
+        scrub: true
+      }
+    });
+
+    for (var _index11 = 0; _index11 < _screen3imgs.length; _index11++) {
+      var _item10 = _screen3imgs[_index11];
+
+      _tl10.fromTo(_item10, {
+        x: '-30%',
+        scale: 0.8,
+        opacity: 0
+      }, {
+        x: 0,
+        scale: 1,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: _item10,
+          start: 'top 100%',
+          end: 'center 75%',
+          scrub: true
+        }
+      });
+    }
+  }
+
+  if (document.querySelector('.wedu')) {
+    var _tl11 = gsap/* gsap.timeline */.p8.timeline();
+
+    var _screen1img5 = document.querySelector('.wedu__screen--1 .wedu__img-wrapper');
+
+    var _typographyImg4 = document.querySelector('.wedu__screen--typography .wedu__typography-img');
+
+    var _typographyColors4 = document.querySelectorAll('.wedu__typography-color');
+
+    var screen2img1 = document.querySelector('.wedu__screen--2 .wedu__img-wrapper--1');
+    var screen2img2 = document.querySelector('.wedu__screen--2 .wedu__img-wrapper--2');
+
+    var _screen3img2 = document.querySelector('.wedu__screen--3 .wedu__img--1');
+
+    var _screen4imgs = document.querySelectorAll('.wedu__screen--4 .wedu__img');
+
+    _tl11.fromTo(_typographyImg4, {
+      y: 50,
+      opacity: 0
+    }, {
+      y: 0,
+      opacity: 1,
+      scrollTrigger: {
+        trigger: _typographyImg4,
+        start: 'top 100%',
+        end: 'top 65%',
+        scrub: 1
+      }
+    });
+
+    _tl11.fromTo(_typographyColors4, {
+      scale: 1.2,
+      opacity: 0
+    }, {
+      scale: 1,
+      opacity: 1,
+      stagger: 0.5,
+      scrollTrigger: {
+        trigger: _typographyColors4,
+        start: 'top 90%',
+        end: 'top 50%',
+        scrub: true
+      }
+    });
+
+    _tl11.fromTo(_screen1img5, {
+      y: 100
+    }, {
+      y: 0,
+      scrollTrigger: {
+        trigger: _screen1img5,
+        start: 'top 100%',
+        end: 'top 65%',
+        scrub: 1
+      }
+    });
+
+    _tl11.fromTo(screen2img1, {
+      y: 50,
+      scale: 0.7
+    }, {
+      y: 0,
+      scale: 1,
+      scrollTrigger: {
+        trigger: screen2img1,
+        start: 'top 100%',
+        end: 'center 50%',
+        scrub: true
+      }
+    });
+
+    _tl11.fromTo(document.querySelector('.wedu__screen--2 .wedu__img--1'), {
+      rotate: 0
+    }, {
+      rotate: 220,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: screen2img1,
+        start: 'top 100%',
+        end: 'bottom 0%',
+        scrub: true
+      }
+    });
+
+    _tl11.fromTo(screen2img2, {
+      y: 50,
+      scale: 1.2
+    }, {
+      y: 0,
+      scale: 1,
+      scrollTrigger: {
+        trigger: screen2img2,
+        start: 'top 100%',
+        end: 'center 50%',
+        scrub: true
+      }
+    });
+
+    _tl11.fromTo(_screen3img2, {
+      scale: 1.4
+    }, {
+      scale: 1,
+      scrollTrigger: {
+        trigger: _screen3img2,
+        start: 'top 100%',
+        end: 'bottom 50%',
+        scrub: true
+      }
+    });
+
+    for (var _index12 = 0; _index12 < _screen4imgs.length; _index12++) {
+      var _item11 = _screen4imgs[_index12];
+
+      _tl11.fromTo(_item11, {
+        y: 50,
+        opacity: 0
+      }, {
+        y: 0,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: _item11,
+          start: 'top 100%',
+          end: 'center 75%',
           scrub: true
         }
       });
@@ -1150,16 +1483,13 @@ src_init();
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			id: moduleId,
-/******/ 			loaded: false,
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/ 	
-/******/ 		// Flag the module as loaded
-/******/ 		module.loaded = true;
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
@@ -1215,30 +1545,9 @@ src_init();
 /******/ 		};
 /******/ 	}();
 /******/ 	
-/******/ 	/* webpack/runtime/global */
-/******/ 	!function() {
-/******/ 		__webpack_require__.g = (function() {
-/******/ 			if (typeof globalThis === 'object') return globalThis;
-/******/ 			try {
-/******/ 				return this || new Function('return this')();
-/******/ 			} catch (e) {
-/******/ 				if (typeof window === 'object') return window;
-/******/ 			}
-/******/ 		})();
-/******/ 	}();
-/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	!function() {
 /******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
-/******/ 	}();
-/******/ 	
-/******/ 	/* webpack/runtime/node module decorator */
-/******/ 	!function() {
-/******/ 		__webpack_require__.nmd = function(module) {
-/******/ 			module.paths = [];
-/******/ 			if (!module.children) module.children = [];
-/******/ 			return module;
-/******/ 		};
 /******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/runtimeId */
