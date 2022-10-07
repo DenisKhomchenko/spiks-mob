@@ -194,22 +194,28 @@ gsap/* gsap.registerPlugin */.p8.registerPlugin(ScrollTrigger/* ScrollTrigger */
 document.addEventListener('DOMContentLoaded', function () {
   // INTRO
   if (document.querySelector('.section-intro')) {
+    var intro = function intro() {
+      for (var index = 0; index < introItems.length; index++) {
+        var item = introItems[index];
+        tl.fromTo(item, {
+          opacity: 0
+        }, {
+          opacity: 1,
+          delay: index * 0.25,
+          duration: 0.85
+        });
+      }
+    };
+
     var introItems = document.querySelectorAll('.section-intro__item');
     var sectionIntro = document.querySelector('.section-intro');
     var tl = gsap/* gsap.timeline */.p8.timeline();
 
-    for (var index = 0; index < introItems.length; index++) {
-      var item = introItems[index];
-      tl.fromTo(item, {
-        opacity: 0
-      }, {
-        opacity: 1,
-        delay: index * 0.25,
-        duration: 0.5
-      });
-    }
-
-    tl.play().delay(0.5);
+    window.onload = function () {
+      setTimeout(function (e) {
+        intro();
+      }, 1500);
+    };
   } // PROJECTS
 
 
@@ -218,17 +224,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var _tl = gsap/* gsap.timeline */.p8.timeline();
 
-    for (var _index = 0; _index < projects.length; _index++) {
-      var _item = projects[_index];
+    for (var index = 0; index < projects.length; index++) {
+      var item = projects[index];
+      var title = item.querySelector('.card-project__title');
+      var text = item.querySelector('.card-project__text');
 
-      var title = _item.querySelector('.card-project__title');
-
-      var text = _item.querySelector('.card-project__text');
-
-      _tl.to(_item, {
+      _tl.to(item, {
         scrollTrigger: {
-          trigger: _item,
-          start: 'top 95%',
+          trigger: item,
+          start: 'top 85%',
           end: 'bottom 20%',
           toggleClass: 'is-visible'
         }
@@ -270,21 +274,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var _tl2 = gsap/* gsap.timeline */.p8.timeline();
 
-    for (var _index2 = 0; _index2 < services.length; _index2++) {
-      var _item2 = services[_index2];
+    for (var _index = 0; _index < services.length; _index++) {
+      var _item = services[_index];
 
-      _tl2.fromTo(_item2, {
-        y: _index2 * 50,
+      _tl2.fromTo(_item, {
+        y: _index * 50,
         opacity: 0,
         duration: 1
       }, {
         y: 0,
         opacity: 1,
         scrollTrigger: {
-          trigger: _item2,
+          trigger: _item,
           scrub: 1,
-          start: 'top 90%',
-          end: 'top 70%'
+          start: 'top 80%',
+          end: 'top 50%'
         }
       });
     }
@@ -302,17 +306,17 @@ document.addEventListener('DOMContentLoaded', function () {
     var sectionReasons = document.querySelector('.section-reasons');
     var reasonsList = document.querySelector('.section-reasons__list');
 
-    for (var _index3 = 0; _index3 < titleSpans.length; _index3++) {
-      var _item3 = titleSpans[_index3];
+    for (var _index2 = 0; _index2 < titleSpans.length; _index2++) {
+      var _item2 = titleSpans[_index2];
 
-      _tl3.fromTo(_item3, {
+      _tl3.fromTo(_item2, {
         opacity: 0
       }, {
         opacity: 1,
         scrollTrigger: {
-          trigger: _item3,
-          start: 'top 85%',
-          end: 'top 60%',
+          trigger: _item2,
+          start: 'top 95%',
+          end: 'top 70%',
           scrub: true
         }
       });
@@ -336,8 +340,8 @@ document.addEventListener('DOMContentLoaded', function () {
       x: 0,
       scrollTrigger: {
         trigger: jsReasonsTitle,
-        start: 'top 75%',
-        end: 'top 50%',
+        start: 'top 95%',
+        end: 'top 70%',
         scrub: true
       }
     });
@@ -353,8 +357,8 @@ document.addEventListener('DOMContentLoaded', function () {
       ease: 'none',
       scrollTrigger: {
         trigger: sectionReasons,
-        start: 'top 60%',
-        end: 'top 25%',
+        start: 'top 65%',
+        end: 'top 35%',
         scrub: true
       }
     });
@@ -365,8 +369,8 @@ document.addEventListener('DOMContentLoaded', function () {
       marginTop: 0,
       scrollTrigger: {
         trigger: sectionReasons,
-        start: 'top 25%',
-        end: 'top 5%',
+        start: 'top 15%',
+        end: 'top 0%',
         scrub: 1
       }
     });
@@ -402,27 +406,27 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    for (var _index4 = 0; _index4 < bitrixItems.length; _index4++) {
-      var _item4 = bitrixItems[_index4];
+    for (var _index3 = 0; _index3 < bitrixItems.length; _index3++) {
+      var _item3 = bitrixItems[_index3];
 
-      var content = _item4.querySelector('.section-bitrix__item-content');
+      var content = _item3.querySelector('.section-bitrix__item-content');
 
       var xStart = '100%';
 
-      if (_index4 == 0) {
+      if (_index3 == 0) {
         xStart = '-100%';
-      } else if (_index4 % 2 == 0) {
+      } else if (_index3 % 2 == 0) {
         xStart = '-100%';
       }
 
-      _tl4.fromTo(_item4, {
+      _tl4.fromTo(_item3, {
         x: xStart,
         opacity: 0
       }, {
         x: 0,
         opacity: 1,
         scrollTrigger: {
-          trigger: _item4,
+          trigger: _item3,
           start: 'top 100%',
           end: 'top 60%',
           scrub: true
@@ -434,7 +438,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }, {
         opacity: 1,
         scrollTrigger: {
-          trigger: _item4,
+          trigger: _item3,
           start: 'top 90%',
           end: 'top 50%',
           scrub: true
@@ -447,15 +451,15 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.querySelector('.section-products')) {
     var products = document.querySelectorAll('.card-product');
 
-    for (var _index5 = 0; _index5 < products.length; _index5++) {
-      var _item5 = products[_index5];
+    for (var _index4 = 0; _index4 < products.length; _index4++) {
+      var _item4 = products[_index4];
 
       var _tl5 = gsap/* gsap.timeline */.p8.timeline();
 
-      _tl5.to(_item5, {
+      _tl5.to(_item4, {
         scrollTrigger: {
-          trigger: _item5,
-          start: 'top 85%',
+          trigger: _item4,
+          start: 'top 75%',
           scrub: true,
           toggleClass: 'is-visible'
         }
@@ -466,8 +470,8 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.querySelector('.jsProject')) {
     var _projects = document.querySelectorAll('.jsProject');
 
-    var _loop = function _loop(_index6) {
-      var project = _projects[_index6];
+    var _loop = function _loop(_index5) {
+      var project = _projects[_index5];
 
       window.onload = function () {
         gsap/* gsap.to */.p8.to(window, {
@@ -543,8 +547,8 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     };
 
-    for (var _index6 = 0; _index6 < _projects.length; _index6++) {
-      _loop(_index6);
+    for (var _index5 = 0; _index5 < _projects.length; _index5++) {
+      _loop(_index5);
     }
   }
 
@@ -699,10 +703,10 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    for (var _index7 = 0; _index7 < typographyColors.length; _index7++) {
-      var _item6 = typographyColors[_index7];
+    for (var _index6 = 0; _index6 < typographyColors.length; _index6++) {
+      var _item5 = typographyColors[_index6];
 
-      _tl7.fromTo(_item6, {
+      _tl7.fromTo(_item5, {
         scale: 0,
         y: 25
       }, {
@@ -710,8 +714,8 @@ document.addEventListener('DOMContentLoaded', function () {
         y: 0,
         scrollTrigger: {
           trigger: typographyColorsWrapper,
-          start: 'top ' + (100 - _index7 * 10) + '%',
-          end: 'bottom ' + (85 - _index7 * 10) + '%',
+          start: 'top ' + (100 - _index6 * 10) + '%',
+          end: 'bottom ' + (85 - _index6 * 10) + '%',
           scrub: true
         }
       });
@@ -729,17 +733,17 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    for (var _index8 = 0; _index8 < _screen3img.length; _index8++) {
-      var _item7 = _screen3img[_index8];
+    for (var _index7 = 0; _index7 < _screen3img.length; _index7++) {
+      var _item6 = _screen3img[_index7];
 
-      _tl7.fromTo(_item7, {
-        marginTop: 50 + _index8 * 50 // opacity: 0,
+      _tl7.fromTo(_item6, {
+        marginTop: 50 + _index7 * 50 // opacity: 0,
 
       }, {
         marginTop: 0,
         // opacity: 1,
         scrollTrigger: {
-          trigger: _item7,
+          trigger: _item6,
           start: 'top 100%',
           end: 'center 50%',
           scrub: true
@@ -789,17 +793,17 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    for (var _index9 = 0; _index9 < _typographyColors.length; _index9++) {
-      var _item8 = _typographyColors[_index9];
+    for (var _index8 = 0; _index8 < _typographyColors.length; _index8++) {
+      var _item7 = _typographyColors[_index8];
 
-      _tl8.fromTo(_item8, {
+      _tl8.fromTo(_item7, {
         y: 50,
         opacity: 0
       }, {
         y: 0,
         opacity: 1,
         scrollTrigger: {
-          trigger: _item8,
+          trigger: _item7,
           start: 'top 100%',
           end: 'top 75%',
           scrub: true
@@ -831,22 +835,22 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    for (var _index10 = 0; _index10 < screen2imgs.length; _index10++) {
-      var _item9 = screen2imgs[_index10];
+    for (var _index9 = 0; _index9 < screen2imgs.length; _index9++) {
+      var _item8 = screen2imgs[_index9];
       var _xStart = '15%';
 
-      if (_index10 == 0) {
+      if (_index9 == 0) {
         _xStart = '-15%';
-      } else if (_index10 % 2 == 0) {
+      } else if (_index9 % 2 == 0) {
         _xStart = '-15%';
       }
 
-      _tl8.fromTo(_item9, {
+      _tl8.fromTo(_item8, {
         x: _xStart
       }, {
         x: 0,
         scrollTrigger: {
-          trigger: _item9,
+          trigger: _item8,
           start: 'top 100%',
           end: 'center 50%',
           scrub: true
@@ -895,35 +899,35 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    for (var _index11 = 0; _index11 < _typographyColors2.length; _index11++) {
-      var _item10 = _typographyColors2[_index11];
+    for (var _index10 = 0; _index10 < _typographyColors2.length; _index10++) {
+      var _item9 = _typographyColors2[_index10];
 
-      _tl9.fromTo(_item10, {
+      _tl9.fromTo(_item9, {
         y: 30,
         opacity: 0
       }, {
         y: 0,
         opacity: 1,
         scrollTrigger: {
-          trigger: _item10,
-          start: 'top ' + (100 - _index11 * 5) + '%',
-          end: 'top ' + (85 - _index11 * 5) + '%',
+          trigger: _item9,
+          start: 'top ' + (100 - _index10 * 5) + '%',
+          end: 'top ' + (85 - _index10 * 5) + '%',
           scrub: true
         }
       });
     }
 
-    for (var _index12 = 0; _index12 < _screen2imgs.length; _index12++) {
-      var _item11 = _screen2imgs[_index12];
+    for (var _index11 = 0; _index11 < _screen2imgs.length; _index11++) {
+      var _item10 = _screen2imgs[_index11];
 
-      _tl9.fromTo(_item11, {
+      _tl9.fromTo(_item10, {
         y: 80,
         opacity: 0
       }, {
         y: 0,
         opacity: 1,
         scrollTrigger: {
-          trigger: _item11,
+          trigger: _item10,
           start: 'top 100%',
           end: 'center 50%',
           scrub: true
@@ -931,10 +935,10 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
 
-    for (var _index13 = 0; _index13 < screen3imgs.length; _index13++) {
-      var _item12 = screen3imgs[_index13];
+    for (var _index12 = 0; _index12 < screen3imgs.length; _index12++) {
+      var _item11 = screen3imgs[_index12];
 
-      _tl9.fromTo(_item12, {
+      _tl9.fromTo(_item11, {
         y: 30,
         scale: 0.9,
         opacity: 0
@@ -943,7 +947,7 @@ document.addEventListener('DOMContentLoaded', function () {
         scale: 1,
         opacity: 1,
         scrollTrigger: {
-          trigger: _item12,
+          trigger: _item11,
           start: 'top 100%',
           end: 'center 75%',
           scrub: true
@@ -951,24 +955,24 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
 
-    for (var _index14 = 0; _index14 < screen4imgs.length; _index14++) {
-      var _item13 = screen4imgs[_index14];
+    for (var _index13 = 0; _index13 < screen4imgs.length; _index13++) {
+      var _item12 = screen4imgs[_index13];
       var _xStart2 = '25%';
 
-      if (_index14 == 0) {
+      if (_index13 == 0) {
         _xStart2 = '-25%';
-      } else if (_index14 % 2 == 0) {
+      } else if (_index13 % 2 == 0) {
         _xStart2 = '-25%';
       }
 
-      _tl9.fromTo(_item13, {
+      _tl9.fromTo(_item12, {
         x: _xStart2,
         opacity: 0
       }, {
         x: 0,
         opacity: 1,
         scrollTrigger: {
-          trigger: _item13,
+          trigger: _item12,
           start: 'top 100%',
           end: 'center 50%',
           scrub: true
@@ -1023,17 +1027,17 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    for (var _index15 = 0; _index15 < _typographyColors3.length; _index15++) {
-      var _item14 = _typographyColors3[_index15];
+    for (var _index14 = 0; _index14 < _typographyColors3.length; _index14++) {
+      var _item13 = _typographyColors3[_index14];
 
-      _tl10.fromTo(_item14, {
+      _tl10.fromTo(_item13, {
         scale: 1.2,
         opacity: 0
       }, {
         scale: 1,
         opacity: 1,
         scrollTrigger: {
-          trigger: _item14,
+          trigger: _item13,
           start: 'top 90%',
           end: 'bottom 85%',
           scrub: true
@@ -1041,10 +1045,10 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
 
-    for (var _index16 = 0; _index16 < _screen2imgs2.length; _index16++) {
-      var _item15 = _screen2imgs2[_index16];
+    for (var _index15 = 0; _index15 < _screen2imgs2.length; _index15++) {
+      var _item14 = _screen2imgs2[_index15];
 
-      _tl10.fromTo(_item15, {
+      _tl10.fromTo(_item14, {
         y: 50,
         scale: 1.2,
         opacity: 0
@@ -1053,7 +1057,7 @@ document.addEventListener('DOMContentLoaded', function () {
         scale: 1,
         opacity: 1,
         scrollTrigger: {
-          trigger: _item15,
+          trigger: _item14,
           start: 'top 100%',
           end: 'center 50%',
           scrub: true
@@ -1091,10 +1095,10 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    for (var _index17 = 0; _index17 < _screen3imgs.length; _index17++) {
-      var _item16 = _screen3imgs[_index17];
+    for (var _index16 = 0; _index16 < _screen3imgs.length; _index16++) {
+      var _item15 = _screen3imgs[_index16];
 
-      _tl10.fromTo(_item16, {
+      _tl10.fromTo(_item15, {
         x: '-30%',
         scale: 0.8,
         opacity: 0
@@ -1103,7 +1107,7 @@ document.addEventListener('DOMContentLoaded', function () {
         scale: 1,
         opacity: 1,
         scrollTrigger: {
-          trigger: _item16,
+          trigger: _item15,
           start: 'top 100%',
           end: 'center 75%',
           scrub: true
@@ -1142,19 +1146,19 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    for (var _index18 = 0; _index18 < _typographyColors4.length; _index18++) {
-      var _item17 = _typographyColors4[_index18];
+    for (var _index17 = 0; _index17 < _typographyColors4.length; _index17++) {
+      var _item16 = _typographyColors4[_index17];
 
-      _tl11.fromTo(_item17, {
+      _tl11.fromTo(_item16, {
         scale: 1.2,
         opacity: 0
       }, {
         scale: 1,
         opacity: 1,
         scrollTrigger: {
-          trigger: _item17,
-          start: 'top ' + (95 - _index18 * 5) + '%',
-          end: 'top ' + (80 - _index18 * 5) + '%',
+          trigger: _item16,
+          start: 'top ' + (95 - _index17 * 5) + '%',
+          end: 'top ' + (80 - _index17 * 5) + '%',
           scrub: true
         }
       });
@@ -1225,17 +1229,17 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    for (var _index19 = 0; _index19 < _screen4imgs.length; _index19++) {
-      var _item18 = _screen4imgs[_index19];
+    for (var _index18 = 0; _index18 < _screen4imgs.length; _index18++) {
+      var _item17 = _screen4imgs[_index18];
 
-      _tl11.fromTo(_item18, {
+      _tl11.fromTo(_item17, {
         y: 50,
         opacity: 0
       }, {
         y: 0,
         opacity: 1,
         scrollTrigger: {
-          trigger: _item18,
+          trigger: _item17,
           start: 'top 100%',
           end: 'center 75%',
           scrub: true
