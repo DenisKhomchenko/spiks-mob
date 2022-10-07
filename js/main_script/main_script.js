@@ -270,21 +270,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var _tl2 = gsap/* gsap.timeline */.p8.timeline();
 
-    _tl2.fromTo(services, {
-      y: 50,
-      opacity: 0,
-      duration: 1
-    }, {
-      y: 0,
-      opacity: 1,
-      stagger: 0.25,
-      scrollTrigger: {
-        trigger: services,
-        scrub: 1,
-        start: 'top 90%',
-        end: 'top 50%'
-      }
-    });
+    for (var _index2 = 0; _index2 < services.length; _index2++) {
+      var _item2 = services[_index2];
+
+      _tl2.fromTo(_item2, {
+        y: _index2 * 50,
+        opacity: 0,
+        duration: 1
+      }, {
+        y: 0,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: _item2,
+          scrub: 1,
+          start: 'top 90%',
+          end: 'top 70%'
+        }
+      });
+    }
   } // REASONS
 
 
@@ -299,18 +302,21 @@ document.addEventListener('DOMContentLoaded', function () {
     var sectionReasons = document.querySelector('.section-reasons');
     var reasonsList = document.querySelector('.section-reasons__list');
 
-    _tl3.fromTo(titleSpans, {
-      opacity: 0
-    }, {
-      opacity: 1,
-      stagger: 0.5,
-      scrollTrigger: {
-        trigger: titleSpans,
-        start: 'top 95%',
-        end: 'top 70%',
-        scrub: true
-      }
-    });
+    for (var _index3 = 0; _index3 < titleSpans.length; _index3++) {
+      var _item3 = titleSpans[_index3];
+
+      _tl3.fromTo(_item3, {
+        opacity: 0
+      }, {
+        opacity: 1,
+        scrollTrigger: {
+          trigger: _item3,
+          start: 'top 85%',
+          end: 'top 60%',
+          scrub: true
+        }
+      });
+    }
 
     _tl3.fromTo(titleStrong, {
       opacity: 1
@@ -396,27 +402,27 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    for (var _index2 = 0; _index2 < bitrixItems.length; _index2++) {
-      var _item2 = bitrixItems[_index2];
+    for (var _index4 = 0; _index4 < bitrixItems.length; _index4++) {
+      var _item4 = bitrixItems[_index4];
 
-      var content = _item2.querySelector('.section-bitrix__item-content');
+      var content = _item4.querySelector('.section-bitrix__item-content');
 
       var xStart = '100%';
 
-      if (_index2 == 0) {
+      if (_index4 == 0) {
         xStart = '-100%';
-      } else if (_index2 % 2 == 0) {
+      } else if (_index4 % 2 == 0) {
         xStart = '-100%';
       }
 
-      _tl4.fromTo(_item2, {
+      _tl4.fromTo(_item4, {
         x: xStart,
         opacity: 0
       }, {
         x: 0,
         opacity: 1,
         scrollTrigger: {
-          trigger: _item2,
+          trigger: _item4,
           start: 'top 100%',
           end: 'top 60%',
           scrub: true
@@ -428,7 +434,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }, {
         opacity: 1,
         scrollTrigger: {
-          trigger: _item2,
+          trigger: _item4,
           start: 'top 90%',
           end: 'top 50%',
           scrub: true
@@ -441,14 +447,14 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.querySelector('.section-products')) {
     var products = document.querySelectorAll('.card-product');
 
-    for (var _index3 = 0; _index3 < products.length; _index3++) {
-      var _item3 = products[_index3];
+    for (var _index5 = 0; _index5 < products.length; _index5++) {
+      var _item5 = products[_index5];
 
       var _tl5 = gsap/* gsap.timeline */.p8.timeline();
 
-      _tl5.to(_item3, {
+      _tl5.to(_item5, {
         scrollTrigger: {
-          trigger: _item3,
+          trigger: _item5,
           start: 'top 85%',
           scrub: true,
           toggleClass: 'is-visible'
@@ -460,8 +466,8 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.querySelector('.jsProject')) {
     var _projects = document.querySelectorAll('.jsProject');
 
-    var _loop = function _loop(_index4) {
-      var project = _projects[_index4];
+    var _loop = function _loop(_index6) {
+      var project = _projects[_index6];
 
       window.onload = function () {
         gsap/* gsap.to */.p8.to(window, {
@@ -537,8 +543,8 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     };
 
-    for (var _index4 = 0; _index4 < _projects.length; _index4++) {
-      _loop(_index4);
+    for (var _index6 = 0; _index6 < _projects.length; _index6++) {
+      _loop(_index6);
     }
   }
 
@@ -693,20 +699,23 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    _tl7.fromTo(typographyColors, {
-      scale: 0,
-      y: 25
-    }, {
-      scale: 1,
-      y: 0,
-      stagger: .25,
-      scrollTrigger: {
-        trigger: typographyColors,
-        start: 'top 100%',
-        end: 'bottom 85%',
-        scrub: true
-      }
-    });
+    for (var _index7 = 0; _index7 < typographyColors.length; _index7++) {
+      var _item6 = typographyColors[_index7];
+
+      _tl7.fromTo(_item6, {
+        scale: 0,
+        y: 25
+      }, {
+        scale: 1,
+        y: 0,
+        scrollTrigger: {
+          trigger: typographyColorsWrapper,
+          start: 'top ' + (100 - _index7 * 10) + '%',
+          end: 'bottom ' + (85 - _index7 * 10) + '%',
+          scrub: true
+        }
+      });
+    }
 
     _tl7.fromTo(_screen2img, {
       y: '100px'
@@ -720,17 +729,17 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    for (var _index5 = 0; _index5 < _screen3img.length; _index5++) {
-      var _item4 = _screen3img[_index5];
+    for (var _index8 = 0; _index8 < _screen3img.length; _index8++) {
+      var _item7 = _screen3img[_index8];
 
-      _tl7.fromTo(_item4, {
-        marginTop: 50 + _index5 * 50 // opacity: 0,
+      _tl7.fromTo(_item7, {
+        marginTop: 50 + _index8 * 50 // opacity: 0,
 
       }, {
         marginTop: 0,
         // opacity: 1,
         scrollTrigger: {
-          trigger: _item4,
+          trigger: _item7,
           start: 'top 100%',
           end: 'center 50%',
           scrub: true
@@ -780,20 +789,23 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    _tl8.fromTo(_typographyColors, {
-      y: 50,
-      opacity: 0
-    }, {
-      y: 0,
-      stagger: 0.5,
-      opacity: 1,
-      scrollTrigger: {
-        trigger: _typographyColors,
-        start: 'top 90%',
-        end: 'top 55%',
-        scrub: true
-      }
-    });
+    for (var _index9 = 0; _index9 < _typographyColors.length; _index9++) {
+      var _item8 = _typographyColors[_index9];
+
+      _tl8.fromTo(_item8, {
+        y: 50,
+        opacity: 0
+      }, {
+        y: 0,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: _item8,
+          start: 'top 100%',
+          end: 'top 75%',
+          scrub: true
+        }
+      });
+    }
 
     _tl8.fromTo(_screen1img, {
       y: 50
@@ -819,22 +831,22 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    for (var _index6 = 0; _index6 < screen2imgs.length; _index6++) {
-      var _item5 = screen2imgs[_index6];
+    for (var _index10 = 0; _index10 < screen2imgs.length; _index10++) {
+      var _item9 = screen2imgs[_index10];
       var _xStart = '15%';
 
-      if (_index6 == 0) {
+      if (_index10 == 0) {
         _xStart = '-15%';
-      } else if (_index6 % 2 == 0) {
+      } else if (_index10 % 2 == 0) {
         _xStart = '-15%';
       }
 
-      _tl8.fromTo(_item5, {
+      _tl8.fromTo(_item9, {
         x: _xStart
       }, {
         x: 0,
         scrollTrigger: {
-          trigger: _item5,
+          trigger: _item9,
           start: 'top 100%',
           end: 'center 50%',
           scrub: true
@@ -883,32 +895,35 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    _tl9.fromTo(_typographyColors2, {
-      y: 30,
-      opacity: 0
-    }, {
-      y: 0,
-      opacity: 1,
-      stagger: 0.5,
-      scrollTrigger: {
-        trigger: _typographyColors2,
-        start: 'top 95%',
-        end: 'top 55%',
-        scrub: true
-      }
-    });
+    for (var _index11 = 0; _index11 < _typographyColors2.length; _index11++) {
+      var _item10 = _typographyColors2[_index11];
 
-    for (var _index7 = 0; _index7 < _screen2imgs.length; _index7++) {
-      var _item6 = _screen2imgs[_index7];
+      _tl9.fromTo(_item10, {
+        y: 30,
+        opacity: 0
+      }, {
+        y: 0,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: _item10,
+          start: 'top ' + (100 - _index11 * 5) + '%',
+          end: 'top ' + (85 - _index11 * 5) + '%',
+          scrub: true
+        }
+      });
+    }
 
-      _tl9.fromTo(_item6, {
+    for (var _index12 = 0; _index12 < _screen2imgs.length; _index12++) {
+      var _item11 = _screen2imgs[_index12];
+
+      _tl9.fromTo(_item11, {
         y: 80,
         opacity: 0
       }, {
         y: 0,
         opacity: 1,
         scrollTrigger: {
-          trigger: _item6,
+          trigger: _item11,
           start: 'top 100%',
           end: 'center 50%',
           scrub: true
@@ -916,10 +931,10 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
 
-    for (var _index8 = 0; _index8 < screen3imgs.length; _index8++) {
-      var _item7 = screen3imgs[_index8];
+    for (var _index13 = 0; _index13 < screen3imgs.length; _index13++) {
+      var _item12 = screen3imgs[_index13];
 
-      _tl9.fromTo(_item7, {
+      _tl9.fromTo(_item12, {
         y: 30,
         scale: 0.9,
         opacity: 0
@@ -928,7 +943,7 @@ document.addEventListener('DOMContentLoaded', function () {
         scale: 1,
         opacity: 1,
         scrollTrigger: {
-          trigger: _item7,
+          trigger: _item12,
           start: 'top 100%',
           end: 'center 75%',
           scrub: true
@@ -936,24 +951,24 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
 
-    for (var _index9 = 0; _index9 < screen4imgs.length; _index9++) {
-      var _item8 = screen4imgs[_index9];
+    for (var _index14 = 0; _index14 < screen4imgs.length; _index14++) {
+      var _item13 = screen4imgs[_index14];
       var _xStart2 = '25%';
 
-      if (_index9 == 0) {
+      if (_index14 == 0) {
         _xStart2 = '-25%';
-      } else if (_index9 % 2 == 0) {
+      } else if (_index14 % 2 == 0) {
         _xStart2 = '-25%';
       }
 
-      _tl9.fromTo(_item8, {
+      _tl9.fromTo(_item13, {
         x: _xStart2,
         opacity: 0
       }, {
         x: 0,
         opacity: 1,
         scrollTrigger: {
-          trigger: _item8,
+          trigger: _item13,
           start: 'top 100%',
           end: 'center 50%',
           scrub: true
@@ -1008,25 +1023,28 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    _tl10.fromTo(_typographyColors3, {
-      scale: 1.2,
-      opacity: 0
-    }, {
-      scale: 1,
-      opacity: 1,
-      stagger: 0.5,
-      scrollTrigger: {
-        trigger: _typographyColors3,
-        start: 'top 90%',
-        end: 'ещз 65%',
-        scrub: true
-      }
-    });
+    for (var _index15 = 0; _index15 < _typographyColors3.length; _index15++) {
+      var _item14 = _typographyColors3[_index15];
 
-    for (var _index10 = 0; _index10 < _screen2imgs2.length; _index10++) {
-      var _item9 = _screen2imgs2[_index10];
+      _tl10.fromTo(_item14, {
+        scale: 1.2,
+        opacity: 0
+      }, {
+        scale: 1,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: _item14,
+          start: 'top 90%',
+          end: 'bottom 85%',
+          scrub: true
+        }
+      });
+    }
 
-      _tl10.fromTo(_item9, {
+    for (var _index16 = 0; _index16 < _screen2imgs2.length; _index16++) {
+      var _item15 = _screen2imgs2[_index16];
+
+      _tl10.fromTo(_item15, {
         y: 50,
         scale: 1.2,
         opacity: 0
@@ -1035,7 +1053,7 @@ document.addEventListener('DOMContentLoaded', function () {
         scale: 1,
         opacity: 1,
         scrollTrigger: {
-          trigger: _item9,
+          trigger: _item15,
           start: 'top 100%',
           end: 'center 50%',
           scrub: true
@@ -1073,10 +1091,10 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    for (var _index11 = 0; _index11 < _screen3imgs.length; _index11++) {
-      var _item10 = _screen3imgs[_index11];
+    for (var _index17 = 0; _index17 < _screen3imgs.length; _index17++) {
+      var _item16 = _screen3imgs[_index17];
 
-      _tl10.fromTo(_item10, {
+      _tl10.fromTo(_item16, {
         x: '-30%',
         scale: 0.8,
         opacity: 0
@@ -1085,7 +1103,7 @@ document.addEventListener('DOMContentLoaded', function () {
         scale: 1,
         opacity: 1,
         scrollTrigger: {
-          trigger: _item10,
+          trigger: _item16,
           start: 'top 100%',
           end: 'center 75%',
           scrub: true
@@ -1124,20 +1142,23 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    _tl11.fromTo(_typographyColors4, {
-      scale: 1.2,
-      opacity: 0
-    }, {
-      scale: 1,
-      opacity: 1,
-      stagger: 0.5,
-      scrollTrigger: {
-        trigger: _typographyColors4,
-        start: 'top 90%',
-        end: 'top 50%',
-        scrub: true
-      }
-    });
+    for (var _index18 = 0; _index18 < _typographyColors4.length; _index18++) {
+      var _item17 = _typographyColors4[_index18];
+
+      _tl11.fromTo(_item17, {
+        scale: 1.2,
+        opacity: 0
+      }, {
+        scale: 1,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: _item17,
+          start: 'top ' + (95 - _index18 * 5) + '%',
+          end: 'top ' + (80 - _index18 * 5) + '%',
+          scrub: true
+        }
+      });
+    }
 
     _tl11.fromTo(_screen1img5, {
       y: 100
@@ -1204,17 +1225,17 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    for (var _index12 = 0; _index12 < _screen4imgs.length; _index12++) {
-      var _item11 = _screen4imgs[_index12];
+    for (var _index19 = 0; _index19 < _screen4imgs.length; _index19++) {
+      var _item18 = _screen4imgs[_index19];
 
-      _tl11.fromTo(_item11, {
+      _tl11.fromTo(_item18, {
         y: 50,
         opacity: 0
       }, {
         y: 0,
         opacity: 1,
         scrollTrigger: {
-          trigger: _item11,
+          trigger: _item18,
           start: 'top 100%',
           end: 'center 75%',
           scrub: true
