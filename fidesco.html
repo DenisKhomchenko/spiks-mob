@@ -29,33 +29,28 @@
           <div class="header__menu">
             <h2 class="h2 header__content-title">[МЕНЮ]</h2>
             <div class="header__nav">
-              <nav class="nav"> <a class="nav__link" href="#">
+              <nav class="nav"> <a class="nav__link" href="main.html#projects">
                   <h3 class="h2 nav__link-title">Проекты <span>234</span></h3>
-                </a><a class="nav__link" href="#">
+                </a><a class="nav__link" href="main.html#services">
                   <h3 class="h2 nav__link-title">Услуги</h3>
-                </a><a class="nav__link" href="#">
+                </a><a class="nav__link" href="main.html#products">
                   <h3 class="h2 nav__link-title">Цены</h3>
-                </a><a class="nav__link" href="#">
+                </a><a class="nav__link" href="main.html#reasons">
                   <h3 class="h2 nav__link-title">Почему мы<strong>?</strong></h3>
-                </a><a class="nav__link" href="#">
+                </a><a class="nav__link" href="main.html#reviews">
                   <h3 class="h2 nav__link-title">Клиенты</h3>
-                </a><a class="nav__link" href="#">
+                </a><a class="nav__link" href="main.html#footer">
                   <h3 class="h2 nav__link-title">контакты</h3>
                 </a></nav>
             </div>
           </div>
           <div class="header__projects">
-            <h2 class="h2 header__projects-title">[наши проекты]</h2><a class="header__project" href="richness.html">
+            <h2 class="h2 header__projects-title">[последние проекты]</h2><a class="header__project"
+              href="richness.html">
               <div class="header__project-img"><img src="assets\media\projects\header-1.jpg" alt="" /></div>
               <div class="header__project-info">
                 <h3 class="h3 header__project-title">Richness Realty</h3>
                 <p class="text text-plex header__project-text">Продажа элитной недвижимости</p>
-              </div>
-            </a><a class="header__project" href="bonagarden.html">
-              <div class="header__project-img"><img src="assets\media\projects\header-2.svg" alt="" /></div>
-              <div class="header__project-info">
-                <h3 class="h3 header__project-title">Bonagarden</h3>
-                <p class="text text-plex header__project-text">Студия йоги</p>
               </div>
             </a>
           </div>
@@ -157,19 +152,19 @@
         </div>
       </section>
     </main>
-    <footer class="footer" style="background-image: url('assets/media/bg.png')">
+    <footer class="footer" style="background-image: url('assets/media/bg.png')" id="footer">
       <div class="container footer__container">
         <div class="footer__inner">
           <div class="footer__nav">
-            <nav class="nav"> <a class="nav__link" href="#">
+            <nav class="nav"> <a class="nav__link" href="#projects">
                 <h3 class="h2 nav__link-title">Проекты</h3>
-              </a><a class="nav__link" href="#">
+              </a><a class="nav__link" href="main.html#services">
                 <h3 class="h2 nav__link-title">Услуги</h3>
-              </a><a class="nav__link" href="#">
+              </a><a class="nav__link" href="main.html#products">
                 <h3 class="h2 nav__link-title">Цены</h3>
-              </a><a class="nav__link" href="#">
+              </a><a class="nav__link" href="main.html#reasons">
                 <h3 class="h2 nav__link-title">Почему мы?</h3>
-              </a><a class="nav__link" href="#">
+              </a><a class="nav__link" href="main.html#reviews">
                 <h3 class="h2 nav__link-title">Клиенты</h3>
               </a></nav>
           </div>
@@ -189,50 +184,55 @@
         </div>
       </div>
     </footer>
-    <div class="modal fade" id="ok" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content"><button class="modal-close" type="button" data-bs-dismiss="modal"
-            aria-label="Close"><svg class="icon">
-              <use xlink:href="#close"></use>
-            </svg></button>
+    <div class="modal micromodal-slide" id="request" aria-hidden="true">
+      <div class="modal__overlay" data-micromodal-close="data-micromodal-close">
+        <div class="modal__container" role="dialog" aria-modal="true">
+          <div class="modal__close-wrapper"><button class="modal__close" type="button"
+              data-micromodal-close="data-micromodal-close"><svg class="icon-cancel">
+                <use xlink:href="#close"></use>
+              </svg></button></div>
           <div class="modal__main">
-            <h2 class="h2 modal__title">Ваша заявка успешно отправлена!</h2>
-            <h5 class="h5 modal__subtitle">Это окно закроется через несколько секунд</h5>
+            <div class="modal__header">
+              <div class="modal__title"><span class="modal__title-text">Оставить</span><span
+                  class="modal__title-text modal__title-text_selected">заявку</span></div>
+              <div class="modal__desc">Наши контакты: <a href="tel:+79999999999">+7 (999) 999-99-99</a></div>
+            </div>
+            <div class="modal__content">
+              <form class="form form_theme_dark" action="">
+                <div class="form__groups">
+                  <div class="form__group"><input class="form__input" type="text" name="request-name"
+                      placeholder="Имя" /></div>
+                  <div class="form__group"><input class="form__input" type="tel" name="request-tel"
+                      placeholder="Телефон" /></div>
+                  <div class="form__group"><input class="form__input" type="email" name="request-tel"
+                      placeholder="E-mail (необзательное поле)" /></div>
+                </div>
+                <div class="form__footer"><button class="button button_type_secondary" type="submit"><span
+                      class="button__text">Оставить заявку</span><span class="button__icon"></span></button>
+                  <div class="form__notice">Нажимая на кнопку вы соглашаетесь на <a class="form__link"
+                      href="#">обработку персональных данных</a> и с <a class="form__link" href="#">политикой
+                      конфиденциальности</a></div>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="modal fade" id="callback" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content"><button class="modal-close" type="button" data-bs-dismiss="modal"
-            aria-label="Close"><svg class="icon">
-              <use xlink:href="#close"></use>
-            </svg></button>
+    <div class="modal micromodal-slide" id="request-success" aria-hidden="true">
+      <div class="modal__overlay" data-micromodal-close="data-micromodal-close">
+        <div class="modal__container" role="dialog" aria-modal="true">
+          <div class="modal__close-wrapper"><button class="modal__close" type="button"
+              data-micromodal-close="data-micromodal-close"><svg class="icon-cancel">
+                <use xlink:href="#close"></use>
+              </svg></button></div>
           <div class="modal__main">
-            <h2 class="h2 modal__title">Оставить заявку</h2>
-            <h5 class="h5 modal__subtitle">Наши контакты: <a class="link" href="tel: +7(999)999-99-99">+7 (999)
-                999-99-99</a></h5>
-            <div class="modal__form">
-              <form action="#"> <input class="input modal__input jsInput jsInputReq" type="text" placeholder="Имя"
-                  name="name" /><input class="input modal__input jsInput jsPhoneMask jsInputReq" type="text"
-                  placeholder="+7 (999) 999-99-99" name="phone" /><input class="input modal__input jsInput" type="text"
-                  placeholder="E-mail (необзательное поле)" name="mail" /><label
-                  class="input-file modal__input-file"><input class="input-file__input jsInputFile" type="file"
-                    name="file" multiple="multiple" /><span class="input-file__wrapper"> <span
-                      class="input-file__icon-wrapper"> <svg class="icon">
-                        <use xlink:href="#file"></use>
-                      </svg></span><span class="text text-plex text-semibold input-file__title">Прикрепить
-                      файл</span></span><span class="input-file__content"> <span
-                      class="input-file__item jsInputFileItem"><span
-                        class="input-file__item-icon jsInputFileItemClose"></span><span
-                        class="input-file__item-title">FilefilEfile.png</span></span></span></label><button
-                  class="button button--gray modal__button jsFormSubmitButton" type="submit"><span
-                    class="button__text">Оставить заявку</span><svg class="icon button__icon">
-                    <use xlink:href="#arrow--right"></use>
-                  </svg></button></form>
+            <div class="modal__header">
+              <div class="modal__title"><span class="modal__title-text">Ваша</span><span
+                  class="modal__title-text modal__title-text_selected">заявка <br></span><span
+                  class="modal__title-text">успешно отправлена!</span></div>
+              <div class="modal__desc modal__desc_slim">Это окно закроется через несколько секунд</div>
             </div>
-            <p class="text-xs modal__rights"> Нажимая на кнопку вы соглашаетесь на <a class="link" href="#">обработку
-                персональных данных</a> и с <a class="link" href="#">политикой конфиденциальности</a></p>
           </div>
         </div>
       </div>

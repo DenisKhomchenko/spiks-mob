@@ -8,69 +8,106 @@ document.addEventListener('DOMContentLoaded', function () {
   var windowHeight = window.innerHeight;
 
   if (document.querySelector('.jsHeader')) {
-    var headerClose = function headerClose() {
-      jsHeader.classList.remove('is-active');
-      jsHeaderMenu.classList.remove('is-active');
-      jsBurgerTrigger.classList.remove('is-active');
-      body.classList.remove('_lock');
-      rotateIndex = rotateTrigger(rotateIndex);
+    window.header = {
+      main: document.querySelector('.jsHeader'),
+      menu: document.querySelector('.jsBurgerContent'),
+      burgerTrigger: document.querySelector('.jsBurgerTrigger'),
+      rotateIndex: 0,
+      rotate: function rotate(index) {
+        index += 1;
+        window.header.burgerTrigger.style.transform = 'rotate(' + index * 360 + 'deg)';
+        return index;
+      },
+      open: function open() {
+        window.header.main.classList.add('is-active');
+        window.header.menu.classList.add('is-active');
+        window.header.burgerTrigger.classList.add('is-active');
+        document.querySelector('body').classList.add('_lock');
+        window.header.rotateIndex = window.header.rotate(window.header.rotateIndex);
+      },
+      close: function close() {
+        window.header.main.classList.remove('is-active');
+        window.header.menu.classList.remove('is-active');
+        window.header.burgerTrigger.classList.remove('is-active');
+        document.querySelector('body').classList.remove('_lock');
+        window.header.rotateIndex = window.header.rotate(window.header.rotateIndex);
+      }
     };
-
-    var rotateTrigger = function rotateTrigger(index) {
-      index += 1;
-      jsBurgerTrigger.style.transform = 'rotate(' + index * 360 + 'deg)';
-      return index;
-    };
-
-    var jsHeader = document.querySelector('.jsHeader');
-    var jsHeaderMenu = document.querySelector('.jsBurgerContent');
-    var jsBurgerTrigger = document.querySelector('.jsBurgerTrigger');
-    var body = document.querySelector('body');
-    var rotateIndex = 0;
-    jsBurgerTrigger.addEventListener('click', function () {
-      if (jsHeader.classList.contains('is-active')) {
-        headerClose();
+    window.header.burgerTrigger.addEventListener('click', function () {
+      if (window.header.main.classList.contains('is-active')) {
+        window.header.close();
       } else {
-        jsHeader.classList.add('is-active');
-        jsHeaderMenu.classList.add('is-active');
-        jsBurgerTrigger.classList.add('is-active');
-        body.classList.add('_lock');
-        rotateIndex = rotateTrigger(rotateIndex);
+        window.header.open();
       }
     });
     document.addEventListener('click', function (e) {
       var target = e.target;
 
-      if (jsHeader.classList.contains('is-active')) {
+      if (window.header.main.classList.contains('is-active')) {
         if (!target.closest('.jsHeader')) {
-          headerClose();
+          window.header.close();
         }
       }
     });
     document.addEventListener('scroll', function () {
       if (window.pageYOffset >= windowHeight * 0.25) {
-        jsHeader.classList.add('is-fixed');
+        window.header.main.classList.add('is-fixed');
       } else {
-        jsHeader.classList.remove('is-fixed');
+        window.header.main.classList.remove('is-fixed');
       }
     });
   }
-}); // function headerFixedToggle() {
-// 	let header = document.querySelector('.jsHeader');
-// 	let	headerSourceBottom = document.querySelector('.jsHeader').clientHeight;
-//     console.log(headerSourceBottom);
-// 	if (header.classList.contains('is-fixed') && window.pageYOffset < headerSourceBottom) {
-// 		header.classList.remove('is-fixed');
-// 	} else if (window.pageYOffset > headerSourceBottom) {
-// 		header.classList.add('is-fixed');
-// 	}
-// }
-// document.addEventListener('DOMContentLoaded', function(){
-// 	headerFixedToggle();
-// })
-// window.addEventListener('scroll', function() {
-//     headerFixedToggle();
-// });
+});
+
+/***/ }),
+
+/***/ 679:
+/***/ (function() {
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+addEventListener('DOMContentLoaded', function () {
+  var smoothLinks = document.querySelectorAll('a[href*="#"]');
+
+  var _iterator = _createForOfIteratorHelper(smoothLinks),
+      _step;
+
+  try {
+    var _loop = function _loop() {
+      var smoothLink = _step.value;
+      smoothLink.addEventListener('click', function (e) {
+        var id = smoothLink.getAttribute('href');
+
+        if (id != "#") {
+          if (window.header.main.classList.contains('is-active')) {
+            window.header.close();
+          } // let src =  "#" + id.split('#').pop();
+          // document.querySelector(src).scrollIntoView({
+          //     behavior: 'smooth',
+          //     block: 'start'
+          // });
+
+        } else {
+          e.preventDefault();
+        }
+      });
+    };
+
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      _loop();
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+
+  ;
+});
 
 /***/ }),
 
@@ -175,11 +212,160 @@ for (var index = 0; index < serviceCards.length; index++) {
 
 /***/ }),
 
-/***/ 235:
+/***/ 752:
 /***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
 
 "use strict";
 
+// EXTERNAL MODULE: ./node_modules/micromodal/dist/micromodal.es.js
+var micromodal_es = __webpack_require__(650);
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/classCallCheck.js
+var classCallCheck = __webpack_require__(671);
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/createClass.js
+var createClass = __webpack_require__(144);
+;// CONCATENATED MODULE: ./src/components/modal/Classes/ModalView.js
+
+
+
+
+var ModalView = /*#__PURE__*/function () {
+  function ModalView() {
+    (0,classCallCheck/* default */.Z)(this, ModalView);
+  }
+
+  (0,createClass/* default */.Z)(ModalView, null, [{
+    key: "renderSuccessMessage",
+    value: function renderSuccessMessage() {
+      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      var contextElement = options.contextElement,
+          messageTemplate = options.messageTemplate;
+
+      try {
+        contextElement.innerHTML = messageTemplate;
+      } catch (e) {
+        console.debug("[ModalView::renderSuccessMessage]: ".concat(e));
+      }
+    }
+  }, {
+    key: "showModal",
+    value: function showModal(modalId) {
+      try {
+        if (modalId) {
+          micromodal_es/* default.show */.Z.show(modalId);
+        }
+      } catch (e) {
+        console.debug("[ModalView::showModal]: ".concat(e));
+      }
+    }
+  }, {
+    key: "hideModal",
+    value: function hideModal() {
+      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      var modalId = options.modalId,
+          useTimeout = options.useTimeout,
+          timeoutValue = options.timeoutValue;
+      var timeoutFinallyValue = timeoutValue || 300;
+
+      try {
+        if (useTimeout) {
+          setTimeout(function () {
+            micromodal_es/* default.close */.Z.close(modalId);
+          }, timeoutFinallyValue);
+          return true;
+        }
+
+        micromodal_es/* default.close */.Z.close(modalId);
+      } catch (e) {
+        console.debug("[ModalView::hideModal]: ".concat(e));
+      }
+
+      return true;
+    }
+  }]);
+
+  return ModalView;
+}();
+
+/* harmony default export */ var Classes_ModalView = (ModalView);
+;// CONCATENATED MODULE: ./src/components/modal/script.js
+
+
+var registerModalComponent = function registerModalComponent() {
+  var component = {
+    view: Classes_ModalView
+  };
+  window.spiks.modalManager = component;
+};
+
+/* harmony default export */ var script = (registerModalComponent);
+// EXTERNAL MODULE: ./node_modules/gator/gator.js
+var gator = __webpack_require__(140);
+var gator_default = /*#__PURE__*/__webpack_require__.n(gator);
+;// CONCATENATED MODULE: ./src/components/cookies/Cookies.js
+
+
+
+
+var Cookies = /*#__PURE__*/function () {
+  function Cookies() {
+    (0,classCallCheck/* default */.Z)(this, Cookies);
+
+    if (!Cookies.hasCookiesAcceptation()) {
+      this.initComponent();
+    }
+  }
+
+  (0,createClass/* default */.Z)(Cookies, [{
+    key: "initComponent",
+    value: function initComponent() {
+      this.buildTemplate();
+      this.attachEvents();
+    }
+  }, {
+    key: "buildTemplate",
+    value: function buildTemplate() {
+      this.element = document.createElement('div');
+      this.element.classList.add('cookies');
+      this.element.innerHTML = "\n      <div class=\"cookies__inner\">\n        <div class=\"cookies__text\">\u041C\u044B \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0435\u043C <code class=\"code\">&lt;/cookie&gt;</code>, \u043F\u043E\u0442\u043E\u043C\u0443 \u0447\u0442\u043E \u0442\u0430\u043A \u043D\u0430\u0434\u043E\n        </div><button class=\"cookies__button\" type=\"button\" data-action=\"accept-cookies\"><span class=\"cookies__bracket cookies__bracket_left\">[</span><span class=\"cookies__button-text\">\u041E\u041A</span><span class=\"cookies__bracket cookies__bracket_right\">]</span></button>\n      </div>\n    ";
+      document.body.append(this.element);
+    }
+  }, {
+    key: "attachEvents",
+    value: function attachEvents() {
+      var _this = this;
+
+      gator_default()(document).on('click', '[data-action="accept-cookies"]', function () {
+        Cookies.createEntity();
+
+        _this.hideBanner();
+      });
+    }
+  }, {
+    key: "hideBanner",
+    value: function hideBanner() {
+      var _this2 = this;
+
+      this.element.classList.add('cookies_hidden');
+      setTimeout(function () {
+        _this2.element.remove();
+      }, 600);
+    }
+  }], [{
+    key: "hasCookiesAcceptation",
+    value: function hasCookiesAcceptation() {
+      return window.localStorage.getItem('cookiesAcceptation');
+    }
+  }, {
+    key: "createEntity",
+    value: function createEntity() {
+      window.localStorage.setItem('cookiesAcceptation', 'true');
+    }
+  }]);
+
+  return Cookies;
+}();
+
+/* harmony default export */ var cookies_Cookies = (Cookies);
 // EXTERNAL MODULE: ./node_modules/gsap/index.js + 2 modules
 var gsap = __webpack_require__(358);
 // EXTERNAL MODULE: ./node_modules/gsap/ScrollTrigger.js + 1 modules
@@ -1248,8 +1434,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 });
+// EXTERNAL MODULE: ./src/components/link-scroll/scripts.js
+var scripts = __webpack_require__(679);
 // EXTERNAL MODULE: ./src/components/preloader/scripts.js
-var scripts = __webpack_require__(410);
+var preloader_scripts = __webpack_require__(410);
 // EXTERNAL MODULE: ./src/components/header/scripts.js
 var header_scripts = __webpack_require__(450);
 // EXTERNAL MODULE: ./node_modules/imask/esm/index.js + 21 modules
@@ -1485,7 +1673,14 @@ var section_intro_scripts = __webpack_require__(363);
 
 
 
-var init = function init() {};
+
+
+var init = function init() {
+  micromodal_es/* default.init */.Z.init();
+  window.spiks = {};
+  script();
+  new cookies_Cookies();
+};
 
 /* harmony default export */ var src_init = (init);
 ;// CONCATENATED MODULE: ./src/script.js
@@ -1555,6 +1750,18 @@ src_init();
 /******/ 				}
 /******/ 			}
 /******/ 			return result;
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	!function() {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = function(module) {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				function() { return module['default']; } :
+/******/ 				function() { return module; };
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
 /******/ 		};
 /******/ 	}();
 /******/ 	
@@ -1640,7 +1847,7 @@ src_init();
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], function() { return __webpack_require__(235); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], function() { return __webpack_require__(752); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

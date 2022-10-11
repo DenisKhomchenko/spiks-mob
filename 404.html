@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Карта сайта</title>
+    <title>Главная</title>
     <script defer src="js/vendors/vendors.js"></script>
     <script defer src="js/main_script/main_script.js"></script>
     <link href="css/vendors/vendors.css" rel="stylesheet">
@@ -18,16 +18,19 @@
       <div class="preloader__main"><span class="preloader__percentage jsPreloaderPercentage">0 %</span></div><span
         class="preloader__shadow jsPreloaderShadow"></span>
     </div>
-    <div class="sitemap">
-      <div class="sitemap__container">
-        <div class="sitemap__title">Карта сайта</div>
-        <div class="sitemap__nav"><a class="sitemap__link" href="main.html">Главная</a><a class="sitemap__link"
-            href="richness.html">Richness</a><a class="sitemap__link" href="olympia.html">olympia</a><a
-            class="sitemap__link" href="bonagarden.html">bonagarden</a><a class="sitemap__link"
-            href="fidesco.html">fidesco</a><a class="sitemap__link" href="getman.html">getman</a><a
-            class="sitemap__link" href="wedu.html">wedu</a><a class="sitemap__link" href="404.html">404</a></div>
-      </div>
-    </div>
+    <main class="main">
+      <section class="section-404">
+        <div class="section-404__inner">
+          <div class="section-404__bg" style="background-image: url('assets/media/bg.png')"><img
+              src="assets\media\404.svg" alt="" /></div>
+          <div class="section-404__main">
+            <div class="h1 section-404__title"> <span>/СТРАНИЦА</span><img src="assets\media\logo--title.svg"
+                alt="" /><span>НЕ</span><strong>НАЙДЕНА</strong></div><a class="section-404__button" href="index.html">
+              <span>НА ГЛАВНУЮ</span></a>
+          </div>
+        </div>
+      </section>
+    </main>
     <div class="modal micromodal-slide" id="request" aria-hidden="true">
       <div class="modal__overlay" data-micromodal-close="data-micromodal-close">
         <div class="modal__container" role="dialog" aria-modal="true">
