@@ -1,7 +1,7 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 450:
+/***/ 8450:
 /***/ (function() {
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
-/***/ 679:
+/***/ 2679:
 /***/ (function() {
 
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
@@ -111,7 +111,7 @@ addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
-/***/ 410:
+/***/ 7410:
 /***/ (function() {
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
-/***/ 363:
+/***/ 2363:
 /***/ (function() {
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -212,17 +212,111 @@ for (var index = 0; index < serviceCards.length; index++) {
 
 /***/ }),
 
-/***/ 752:
+/***/ 9274:
 /***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
 
 "use strict";
 
 // EXTERNAL MODULE: ./node_modules/micromodal/dist/micromodal.es.js
-var micromodal_es = __webpack_require__(650);
+var micromodal_es = __webpack_require__(9650);
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/classCallCheck.js
-var classCallCheck = __webpack_require__(671);
+var classCallCheck = __webpack_require__(5671);
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/createClass.js
-var createClass = __webpack_require__(144);
+var createClass = __webpack_require__(3144);
+// EXTERNAL MODULE: ./node_modules/yup/es/index.js + 23 modules
+var es = __webpack_require__(1260);
+;// CONCATENATED MODULE: ./src/components/validator/classes/Validator.js
+
+
+
+
+var Validator = /*#__PURE__*/function () {
+  function Validator() {
+    (0,classCallCheck/* default */.Z)(this, Validator);
+  }
+
+  (0,createClass/* default */.Z)(Validator, null, [{
+    key: "validateText",
+    value: function validateText(value, min, max) {
+      var scheme = es/* string */.Z_().trim().required().min(min).max(max);
+      return scheme.isValidSync(value);
+    }
+  }, {
+    key: "validateTel",
+    value: function validateTel(value) {
+      var phoneRegExp = /^((8|\+7)[- ]?)?(\(?\d{3}\)?[- ]?)?[\d\- ]{7,10}$/;
+      var scheme = es/* string */.Z_().trim().required().matches(phoneRegExp);
+      return scheme.isValidSync(value);
+    }
+  }, {
+    key: "validateEmail",
+    value: function validateEmail(value) {
+      var scheme = es/* string */.Z_().trim().required().email();
+      return scheme.isValidSync(value);
+    }
+  }]);
+
+  return Validator;
+}();
+
+/* harmony default export */ var classes_Validator = (Validator);
+;// CONCATENATED MODULE: ./src/components/validator/classes/ValidatorView.js
+
+
+
+var ValidatorView = /*#__PURE__*/function () {
+  function ValidatorView() {
+    (0,classCallCheck/* default */.Z)(this, ValidatorView);
+  }
+
+  (0,createClass/* default */.Z)(ValidatorView, null, [{
+    key: "renderErrorField",
+    value: function renderErrorField(validationState, fieldElement) {
+      if (validationState === 'valid') {
+        fieldElement.classList.remove('has-error');
+      }
+
+      if (validationState === 'invalid') {
+        fieldElement.classList.add('has-error');
+      }
+    }
+  }, {
+    key: "renderInvalidAjaxForm",
+    value: function renderInvalidAjaxForm(formId, invalidFieldsNames) {
+      var formNode = document.querySelector("#".concat(formId));
+      invalidFieldsNames.forEach(function (invalidFieldName) {
+        var fieldNode = formNode.querySelector("[name=".concat(invalidFieldName, "]"));
+        ValidatorView.renderErrorField('invalid', fieldNode);
+      });
+    }
+  }, {
+    key: "renderValidAjaxForm",
+    value: function renderValidAjaxForm(formId, fieldSelector) {
+      var formNode = document.querySelector("#".concat(formId));
+      var fieldNodes = Array.from(formNode.querySelectorAll(fieldSelector));
+      fieldNodes.forEach(function (fieldNode) {
+        ValidatorView.renderErrorField('valid', fieldNode);
+      });
+    }
+  }]);
+
+  return ValidatorView;
+}();
+
+/* harmony default export */ var classes_ValidatorView = (ValidatorView);
+;// CONCATENATED MODULE: ./src/components/validator/script.js
+
+
+
+var registerValidatorComponent = function registerValidatorComponent() {
+  var component = {
+    services: classes_Validator,
+    view: classes_ValidatorView
+  };
+  window.spiks.validator = component;
+};
+
+/* harmony default export */ var script = (registerValidatorComponent);
 ;// CONCATENATED MODULE: ./src/components/modal/Classes/ModalView.js
 
 
@@ -297,9 +391,9 @@ var registerModalComponent = function registerModalComponent() {
   window.spiks.modalManager = component;
 };
 
-/* harmony default export */ var script = (registerModalComponent);
+/* harmony default export */ var modal_script = (registerModalComponent);
 // EXTERNAL MODULE: ./node_modules/gator/gator.js
-var gator = __webpack_require__(140);
+var gator = __webpack_require__(4140);
 var gator_default = /*#__PURE__*/__webpack_require__.n(gator);
 ;// CONCATENATED MODULE: ./src/components/cookies/Cookies.js
 
@@ -367,11 +461,11 @@ var Cookies = /*#__PURE__*/function () {
 
 /* harmony default export */ var cookies_Cookies = (Cookies);
 // EXTERNAL MODULE: ./node_modules/gsap/index.js + 2 modules
-var gsap = __webpack_require__(358);
+var gsap = __webpack_require__(6358);
 // EXTERNAL MODULE: ./node_modules/gsap/ScrollTrigger.js + 1 modules
-var ScrollTrigger = __webpack_require__(92);
+var ScrollTrigger = __webpack_require__(9092);
 // EXTERNAL MODULE: ./node_modules/gsap/ScrollToPlugin.js
-var ScrollToPlugin = __webpack_require__(127);
+var ScrollToPlugin = __webpack_require__(9127);
 ;// CONCATENATED MODULE: ./src/components/anim/scripts.js
 
 
@@ -1435,13 +1529,13 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 // EXTERNAL MODULE: ./src/components/link-scroll/scripts.js
-var scripts = __webpack_require__(679);
+var scripts = __webpack_require__(2679);
 // EXTERNAL MODULE: ./src/components/preloader/scripts.js
-var preloader_scripts = __webpack_require__(410);
+var preloader_scripts = __webpack_require__(7410);
 // EXTERNAL MODULE: ./src/components/header/scripts.js
-var header_scripts = __webpack_require__(450);
+var header_scripts = __webpack_require__(8450);
 // EXTERNAL MODULE: ./node_modules/imask/esm/index.js + 21 modules
-var esm = __webpack_require__(647);
+var esm = __webpack_require__(2647);
 ;// CONCATENATED MODULE: ./src/components/input/scripts.js
 
 var regexpPhone = new RegExp('(7|8)\\s[\(][0-9]{3}[\)]\\s[0-9]{3}[\-][0-9]{2}[\-][0-9]{2}');
@@ -1577,7 +1671,7 @@ window.runMask = function () {
   }
 }; // window.runMask() перезвапуск маски
 // EXTERNAL MODULE: ./node_modules/swiper/swiper.esm.js + 88 modules
-var swiper_esm = __webpack_require__(99);
+var swiper_esm = __webpack_require__(7099);
 ;// CONCATENATED MODULE: ./src/components/slider/scripts.js
  // const jsSlider = new Swiper('.jsSlider .slider__inner', {
 // 	modules: [Navigation, Pagination, Autoplay],
@@ -1661,8 +1755,9 @@ var jsSliderAboutServices = new swiper_esm/* default */.ZP('.jsSliderAboutServic
 // EXTERNAL MODULE: ./src/components/section/section-services/scripts.js
 var section_services_scripts = __webpack_require__(334);
 // EXTERNAL MODULE: ./src/components/section/section-intro/scripts.js
-var section_intro_scripts = __webpack_require__(363);
+var section_intro_scripts = __webpack_require__(2363);
 ;// CONCATENATED MODULE: ./src/init.js
+
 
 
 
@@ -1679,6 +1774,7 @@ var init = function init() {
   micromodal_es/* default.init */.Z.init();
   window.spiks = {};
   script();
+  modal_script();
   new cookies_Cookies();
 };
 
@@ -1703,13 +1799,16 @@ src_init();
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			id: moduleId,
+/******/ 			loaded: false,
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
@@ -1777,9 +1876,30 @@ src_init();
 /******/ 		};
 /******/ 	}();
 /******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	!function() {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	}();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	!function() {
 /******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/node module decorator */
+/******/ 	!function() {
+/******/ 		__webpack_require__.nmd = function(module) {
+/******/ 			module.paths = [];
+/******/ 			if (!module.children) module.children = [];
+/******/ 			return module;
+/******/ 		};
 /******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/runtimeId */
@@ -1847,7 +1967,7 @@ src_init();
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], function() { return __webpack_require__(752); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], function() { return __webpack_require__(9274); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
