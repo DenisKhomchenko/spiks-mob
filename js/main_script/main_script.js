@@ -406,7 +406,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   if (document.querySelector('.section-projects')) {
-    var projects = document.querySelectorAll('.card-project');
+    var projects = document.querySelectorAll('.section-projects .card-project');
 
     var _tl = gsap/* gsap.timeline */.p8.timeline();
 

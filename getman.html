@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>getman</title>
     <script defer src="js/vendors/vendors.js"></script>
+    <script defer src="js/main_style/main_style.js"></script>
     <script defer src="js/main_script/main_script.js"></script>
     <link href="css/vendors/vendors.css" rel="stylesheet">
     <link href="css/main_style/main_style.css" rel="stylesheet">
@@ -45,12 +46,12 @@
             </div>
           </div>
           <div class="header__projects">
-            <h2 class="h2 header__projects-title">[последние проекты]</h2><a class="header__project"
-              href="richness.html">
-              <div class="header__project-img"><img src="assets\media\projects\header-1.jpg" alt="" /></div>
-              <div class="header__project-info">
-                <h3 class="h3 header__project-title">Richness Realty</h3>
-                <p class="text text-plex header__project-text">Продажа элитной недвижимости</p>
+            <h2 class="h2 header__projects-title">[последние проекты]</h2><a class="card-project" href="richness.html">
+              <div class="card-project__img-wrapper"> <img class="card-project__img"
+                  src="assets\media\projects\header-1.jpg" alt="" /></div>
+              <div class="card-project__info">
+                <h3 class="h3 card-project__title">Richness Realty</h3>
+                <p class="text text-plex card-project__text">Продажа элитной недвижимости</p>
               </div>
             </a>
           </div>
@@ -152,25 +153,24 @@
               </div>
             </div>
           </div>
+          <div class="project-intro project-intro--getman project__intro-preview"
+            style="background-image: url(&quot;assets/media/projects/background.png&quot;)">
+            <h1 class="project-intro__title">GETMAN <span>& CO</span></h1><a class="project-intro__button"
+              href="getman.html"><svg class="icon">
+                <use xlink:href="#arrow--down"></use>
+              </svg></a>
+            <div class="project-intro__logo"> <img src="assets\media\projects\getman\intro-logo-main.svg" alt=""></div>
+          </div>
         </div>
       </section>
     </main>
     <footer class="footer" style="background-image: url('assets/media/bg.png')" id="footer">
       <div class="container footer__container">
         <div class="footer__inner">
-          <div class="footer__nav">
-            <nav class="nav"> <a class="nav__link" href="#projects">
-                <h3 class="h2 nav__link-title">Проекты</h3>
-              </a><a class="nav__link" href="main.html#services">
-                <h3 class="h2 nav__link-title">Услуги</h3>
-              </a><a class="nav__link" href="main.html#products">
-                <h3 class="h2 nav__link-title">Цены</h3>
-              </a><a class="nav__link" href="main.html#reasons">
-                <h3 class="h2 nav__link-title">Почему мы?</h3>
-              </a><a class="nav__link" href="main.html#reviews">
-                <h3 class="h2 nav__link-title">Клиенты</h3>
-              </a></nav>
-          </div>
+          <nav class="footer__nav"> <a class="footer__link" href="#projects">Проекты</a><a class="footer__link"
+              href="main.html#services">Услуги</a><a class="footer__link" href="main.html#p    roducts">Цены</a><a
+              class="footer__link" href="main.html#reasons">Почему мы?</a><a class="footer__link"
+              href="main.html#reviews">Клиенты</a></nav>
           <div class="footer__contacts">
             <h3 class="h3 footer__contacts-title">контакты</h3>
             <div class="h5 footer__metro"> <img src="assets\media\icons\metro.svg" alt="" /><span>Чернышевская </span>
@@ -192,7 +192,7 @@
         <div class="modal__container" role="dialog" aria-modal="true">
           <div class="modal__close-wrapper"><button class="modal__close" type="button"
               data-micromodal-close="data-micromodal-close"><svg class="icon-cancel">
-                <use xlink:href="#close"></use>
+                <use xlink:href="#icon-cancel"></use>
               </svg></button></div>
           <div class="modal__main">
             <div class="modal__header">
@@ -227,7 +227,7 @@
         <div class="modal__container" role="dialog" aria-modal="true">
           <div class="modal__close-wrapper"><button class="modal__close" type="button"
               data-micromodal-close="data-micromodal-close"><svg class="icon-cancel">
-                <use xlink:href="#close"></use>
+                <use xlink:href="#icon-cancel"></use>
               </svg></button></div>
           <div class="modal__main">
             <div class="modal__header">
@@ -257,6 +257,10 @@
           d="M12.5 0C5.6 0 0 5.6 0 12.5C0 19.4 5.6 25 12.5 25C19.4 25 25 19.4 25 12.5C25 5.6 19.4 0 12.5 0ZM13.2 18.4L11.9 19.7C11.1 20.5 9.9 21 8.6 21C7.3 21 6.2 20.5 5.3 19.6C4.5 18.8 4 17.6 4 16.4C4 15.2 4.5 14 5.4 13.1L8 10.5C8.9 9.6 10 9.1 11.3 9.1C12.6 9.1 13.7 9.6 14.6 10.5C15 10.9 15 11.5 14.6 11.9C14.2 12.3 13.6 12.3 13.2 11.9C12.7 11.4 12 11.1 11.3 11.1C10.6 11.1 9.9 11.4 9.4 11.9L6.8 14.5C6.3 15 6 15.7 6 16.4C6 17.1 6.3 17.8 6.8 18.3C7.3 18.7 7.9 19 8.6 19C9.3 19 10 18.7 10.5 18.2L11.8 16.9C12.2 16.5 12.8 16.5 13.2 16.9C13.6 17.3 13.6 18 13.2 18.4ZM19.4 11.9L16.8 14.5C15.9 15.4 14.8 15.9 13.5 15.9C12.3 15.9 11.1 15.4 10.2 14.5C9.8 14.1 9.8 13.5 10.2 13.1C10.6 12.7 11.2 12.7 11.6 13.1C12.1 13.6 12.8 13.9 13.5 13.9C14.2 13.9 14.9 13.6 15.4 13.1L18 10.5C18.5 10 18.8 9.3 18.8 8.6C18.8 7.9 18.5 7.2 18 6.7C17.5 6.3 16.8 6 16.1 6C15.4 6 14.7 6.3 14.2 6.8L13 8.1C12.6 8.5 12 8.5 11.6 8.1C11.2 7.7 11.2 7.1 11.6 6.7L12.9 5.4C13.7 4.5 14.9 4 16.1 4C17.3 4 18.5 4.5 19.4 5.4C20.3 6.3 20.8 7.5 20.8 8.7C20.8 9.9 20.3 11.1 19.4 11.9Z" />
       </symbol>
       <symbol viewBox="0 0 24 24" id="close">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M20.5453 3.48509C20.8297 3.78625 20.8161 4.26093 20.5149 4.54531L13.0916 11.5549L20.515 18.5659C20.8161 18.8503 20.8297 19.3249 20.5453 19.6261C20.2609 19.9272 19.7862 19.9408 19.485 19.6564L12 12.5872L4.51497 19.6564C4.21383 19.9408 3.73915 19.9272 3.45474 19.6261C3.17033 19.3249 3.1839 18.8503 3.48503 18.5659L10.907 11.5562L3.48498 4.54521C3.18387 4.26078 3.17035 3.78609 3.45479 3.48498C3.73923 3.18387 4.21391 3.17035 4.51502 3.45479L11.9986 10.5239L19.4851 3.45469C19.7863 3.17031 20.2609 3.18392 20.5453 3.48509Z" />
+      </symbol>
+      <symbol viewBox="0 0 24 24" id="icon-cancel">
         <path fill-rule="evenodd" clip-rule="evenodd"
           d="M20.5453 3.48509C20.8297 3.78625 20.8161 4.26093 20.5149 4.54531L13.0916 11.5549L20.515 18.5659C20.8161 18.8503 20.8297 19.3249 20.5453 19.6261C20.2609 19.9272 19.7862 19.9408 19.485 19.6564L12 12.5872L4.51497 19.6564C4.21383 19.9408 3.73915 19.9272 3.45474 19.6261C3.17033 19.3249 3.1839 18.8503 3.48503 18.5659L10.907 11.5562L3.48498 4.54521C3.18387 4.26078 3.17035 3.78609 3.45479 3.48498C3.73923 3.18387 4.21391 3.17035 4.51502 3.45479L11.9986 10.5239L19.4851 3.45469C19.7863 3.17031 20.2609 3.18392 20.5453 3.48509Z" />
       </symbol>
